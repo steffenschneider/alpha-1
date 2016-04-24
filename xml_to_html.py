@@ -15,10 +15,7 @@ xmlpath = "/home/kame/Dropbox/data/links.xml"
 xml = etree.parse(xmlpath)
 # print(etree.tostring(xml))
 
-# convert data structure
-# todo
-
-# save data in html-file
+# convert data structure and save data in html-file
 # todo
 
 # open html-file
