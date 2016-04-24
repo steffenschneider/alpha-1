@@ -15,8 +15,6 @@ example of xml:
 </mylinks>
 """
 
-__author__ = "Steffen Schneider"
-
 import random
 import re
 import time
