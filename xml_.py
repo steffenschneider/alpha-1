@@ -9,7 +9,6 @@ This file is not ready yet.
 
 from lxml import etree
 
-
 def parse_xml(topic):
     xmlpath = ''
     if topic == 'contacts':
