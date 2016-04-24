@@ -10,7 +10,7 @@ duration = 0
 
 print("press Enter if you see the ########################### !")
 for i in range(n_items):
-    time.sleep(random.randint(3000, 10000)*1.0/1000)
+    time.sleep(random.randint(3000, 10000)*1.0/1000)  # wait 3 to 10 s
     print("#################################")
     print("#################################")
     print("#################################")
