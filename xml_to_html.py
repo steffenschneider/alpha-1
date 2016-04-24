@@ -17,17 +17,21 @@ xmlpath = "/home/kame/Dropbox/data/links.xml"
 xml = etree.parse(xmlpath)
 # print(etree.tostring(xml))
 
+# todo - show url-title
 # todo - sort for category
-# convert data structure and save data in html-file
+# todo - check for empty xml-items
+# convert xml data to html structure and save data in html-file
 url = "/tmp/links.html"
 f = open(url, "w")
 f.write("<html>")
 f.write("<head>")
 f.write("</head>")
 f.write("<body>")
-f.write("My bookmarks:\n\n")
-for i in range(1, 11):
-    f.write("<a href=\"" + str(xml.xpath("//item[" + str(i) + "]/url/text()")[0]) + "\">abc</a>\n")
+f.write("My bookmarks:<br>")
+n_items = len(xml.xpath("//item"))
+print(n_items)
+for i in range(1, n_items + 1):
+    f.write("<a href=\"" + str(xml.xpath("//item[" + str(i) + "]/url/text()")[0]) + "\">abc</a><br>")
 f.write("</body>")
 f.write("</html>")
 
