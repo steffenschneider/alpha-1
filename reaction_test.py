@@ -19,4 +19,4 @@ for i in range(n_items):
     ts2 = time.time()
     duration += ts2-ts1
 
-print("Your reaction time is: " + str(duration/n_items) + " s")
+print("Your reaction time is " + str(duration/n_items) + " s")
