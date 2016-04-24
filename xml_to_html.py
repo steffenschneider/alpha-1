@@ -31,7 +31,8 @@ f.write("My bookmarks:<br>")
 n_items = len(xml.xpath("//item"))
 print(n_items)
 for i in range(1, n_items + 1):
-    f.write("<a href=\"" + str(xml.xpath("//item[" + str(i) + "]/url/text()")[0]) + "\">abc</a><br>")
+    name_ = str(xml.xpath("//item[" + str(i) + "]/name/text()\t\t\t\t\t")[0])
+    f.write("<a href=\"" + str(xml.xpath("//item[" + str(i) + "]/url/text()")[0]) + "\">" + str(name_) + "</a><br>")
 f.write("</body>")
 f.write("</html>")
 
