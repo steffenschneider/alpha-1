@@ -1,3 +1,4 @@
 # alpha
-almost programms in C#
+Programs in C# and Python.
+
 
