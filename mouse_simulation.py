@@ -4,6 +4,8 @@
 simulate a mouse
 move to position
 click position
+
+only works in linux
 """
 
 import os
