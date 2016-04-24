@@ -18,5 +18,6 @@ for i in range(n_items):
     input()
     ts2 = time.time()
     duration += ts2-ts1
+    print("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n")
 
-print("Your reaction time is " + str(duration/n_items) + " s")
+print("Your reaction time is " + str(format(duration/n_items, '.2f')) + " s")
