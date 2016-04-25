@@ -68,7 +68,7 @@ lst = [
     'Widerstand', 'Wind', 'Windmuehle', 'Windrad', 'Winkelmesser', 'Wippe', 'Wirbel', 'WLAN', 'Wochenende',
     'Wundverband', 'Zahn', 'Zahnrad', 'Zahnreinigung', 'Zaun', 'Zeit', 'Zeitlupe', 'Zeitung', 'Zelle',
     'Zen', 'Ziehen', 'Ziffer', 'Zitteraal', 'Zucker', 'Zufall', 'Zug', 'Simulation', 'zunehmender-Verfall',
-    'Zusammenfuegen'
+    'Zusammenfuegen', 'Übersetzung', 'Sinne'
 ]
 
 print('\nAuswahl aus ' + str(len(lst)) + ' Woertern!\n')
