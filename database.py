@@ -24,7 +24,7 @@ def connect():
 def show_tables(self):
     print("show tables: ")
     self.execute("""SHOW TABLES""")
-    print(self.fetchall())
+    # print(self.fetchall())
     return self.fetchall()
 
 
@@ -60,9 +60,10 @@ def add_value(self):
 
 db = connect()
 table_names = show_tables(db)  # returns a tuple
-print(len(table_names))
+print(len(table_names))  # output zero
 show_column_names(db)
-table_name = table_names[0]  # ? - todo - get item from tuple
+table_name = table_names[0][0]  # ? - todo - get item from tuple
+print(table_name)
 show_all(db, table_name)
-add_value(db)
-change_value(db)
+# add_value(db)
+#change_value(db)
