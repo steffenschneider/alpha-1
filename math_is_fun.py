@@ -1,3 +1,11 @@
+#!/usr/bin/env python3
+# coding: utf-8
+
+# Author: Steffen Schneider und Erik Streb del Toro
+# Licence: GPL v3 or newer
+# Changelog:
+#   - 2016-04-28: first version
+
 """
 Math game for children of the age 5-7.
 """
