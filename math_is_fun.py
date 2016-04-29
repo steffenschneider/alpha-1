@@ -1,11 +1,14 @@
 #!/usr/bin/python
 # -*- coding: iso-8859-1 -*-
 
+# uuups deine Beschreibung ist weg. (Sorry)
+
 import tkinter
 from tkinter import Canvas
 
 """
 TODO:
+HEAD
 - anstatt grid canvas. nutzen; damit lässt sich die Position pixelgenau einstellen
 """
 
