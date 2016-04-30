@@ -47,6 +47,7 @@ class MathProgram(tkinter.Tk):
         self.parent = parent
         self.grid()
         self.geometry("400x400+300+150")  # field size
+        self.configure(background='#090')  # green color
         self.run_game()
 
     def run_game(self):
@@ -87,8 +88,10 @@ class MathProgram(tkinter.Tk):
     def check_solution(self, button_number, solution_position):
         if button_number - 2 == solution_position:
             print("PASS")
+            self.configure(background='#090')  # green color
         else:
             print("FAIL")
+            self.configure(background='#900')  # red color
         self.run_game()
 
 
