@@ -14,6 +14,7 @@ TODO:
 - generate random numbers       DONE
 - calculation                   DONE
 - click-event + compare results
+- feature: wenn Kind drei Farben richtig hat darf es background-color wählen
 
 PLAN:
 - at the beginning
@@ -46,9 +47,7 @@ class MathProgram(tkinter.Tk):
         self.parent = parent
         self.grid()
         self.geometry("400x400+300+150")  # field size
-
-        for i in range(3):
-            self.run_game()
+        self.run_game()
 
     def run_game(self):
         # create problem
@@ -57,7 +56,7 @@ class MathProgram(tkinter.Tk):
         # text with the math question
         self.labelVariable = tkinter.StringVar()
         label = tkinter.Label(self, textvariable=self.labelVariable,
-                              anchor="center", fg="white", bg="black", text="Helvetica",
+                              anchor="center", fg="orange", bg="yellow", text="Helvetica",
                               font=("Helvetica", 45))
         label.grid(column=0, row=0, columnspan=2, sticky='EW')
         self.labelVariable.set(str(int_1) + " + " + str(int_2))
@@ -67,11 +66,11 @@ class MathProgram(tkinter.Tk):
         # answer fields (Buttons)
         answer_fields = [solution, wrong_solution]
         button2 = tkinter.Button(self, text=answer_fields[solution_position], font="Helvetica 65 bold",
-                                 command=self.OnButtonClickButton2, height=1, width=3)
+                                 command=self.OnButtonClickButton2, height=1, width=3, fg="black", bg="yellow")
         button2.place(relx=0.25, rely=0.5, anchor=tkinter.CENTER)
 
         button3 = tkinter.Button(self, text=answer_fields[1 ^ solution_position], font="Helvetica 65 bold",
-                                 command=self.OnButtonClickButton3, height=1, width=3)
+                                 command=self.OnButtonClickButton3, height=1, width=3, fg="black", bg="yellow")
         button3.place(relx=0.75, rely=0.5, anchor=tkinter.CENTER)
 
     def CreateProblem(self):
@@ -85,9 +84,11 @@ class MathProgram(tkinter.Tk):
 
     def OnButtonClickButton2(self):
         self.Check_solution(2)
+        self.run_game()
 
     def OnButtonClickButton3(self):
         self.Check_solution(3)
+        self.run_game()
 
     def Check_solution(self, button_number):
         # todo
