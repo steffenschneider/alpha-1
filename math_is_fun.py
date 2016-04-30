@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 # coding: utf-8
-# !!! wir machen bitte alles mit utf-8, wir sind im Jahr 2016!!!
+
 # Stil: Best of the Best Practices (https://gist.github.com/sloria/7001839)
 
 import tkinter
@@ -10,9 +10,10 @@ Können wir erstmal ein Spiel machen wo man die Lösung auf einem von zwei
 Buttons angezeigt bekommt?
 
 TODO:
-HEAD
-- eventuell anstatt grid canvas nutzen; damit lässt sich die Position
-  pixelgenau einstellen
+- generate random numbers
+- calculation
+- click-event
+- compare results
 
 PLAN:
 - at the beginning
@@ -24,7 +25,20 @@ PLAN:
 -- the score is update
 -- after 5 secs a new question is shown
 - the game finishes after 10-15 questions
+
+CHANGELOG:
+- 30.04.16 Button size changed
 """
+
+__author__ = "Steffen Schneider, Erik Streb"
+__copyright__ = "..."
+__credits__ = ["Steffen Schneider, Erik Streb"]
+__license__ = "GPL"
+__version__ = "0.0.1"
+__maintainer__ = "Steffen Schneider"
+__email__ = "nanosecond@web.de"
+__status__ = "Development"
+
 
 class MathProgram(tkinter.Tk):
     def __init__(self, parent):
@@ -39,22 +53,21 @@ class MathProgram(tkinter.Tk):
         # text with the math question
         self.labelVariable = tkinter.StringVar()
         label = tkinter.Label(self, textvariable=self.labelVariable,
-            anchor="center", fg="white", bg="black", text="Helvetica",
-            font=("Helvetica", 25))
+                              anchor="center", fg="white", bg="black", text="Helvetica",
+                              font=("Helvetica", 45))
         label.grid(column=0, row=0, columnspan=2, sticky='EW')
         self.labelVariable.set("1 + 2")
         self.grid_columnconfigure(0, weight=1)  # stretch to the whole window size
         self.update()
-        #self.geometry(self.geometry()) # <-- wozu ist das hier? das ist doch
-                                        # schon oben definiert
 
         # answer fields
-        # TODO: Button-Größe und ausrichten
-        button2 = tkinter.Button(self, text="3", command=self.OnButtonClick)
-        button2.grid(column=0, row=1)
+        button2 = tkinter.Button(self, text="3", font="Helvetica 65 bold",
+                                 command=self.OnButtonClick, height=1, width=3)
+        button2.place(relx=0.25, rely=0.5, anchor=tkinter.CENTER)
 
-        button3 = tkinter.Button(self, text="4", command=self.OnButtonClick)
-        button3.grid(column=1, row=1)
+        button3 = tkinter.Button(self, text="4", font="Helvetica 65 bold",
+                                 command=self.OnButtonClick, height=1, width=3)
+        button3.place(relx=0.75, rely=0.5, anchor=tkinter.CENTER)
 
     def OnButtonClick(self):
         self.labelVariable.set(self.entryVariable.get() + " (You clicked the button)")
