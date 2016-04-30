@@ -3,17 +3,17 @@
 
 # Stil: Best of the Best Practices (https://gist.github.com/sloria/7001839)
 
+import random
 import tkinter
 
 """
-Können wir erstmal ein Spiel machen wo man die Lösung auf einem von zwei
-Buttons angezeigt bekommt?
+Version 1:
+- guess the solution of an addition of two simple numbers
 
 TODO:
-- generate random numbers
-- calculation
-- click-event
-- compare results
+- generate random numbers       DONE
+- calculation                   DONE
+- click-event + compare results
 
 PLAN:
 - at the beginning
@@ -50,37 +50,46 @@ class MathProgram(tkinter.Tk):
         self.grid()
         self.geometry("400x400+300+150")  # field size
 
+        # create first problem
+        int_1, int_2, solution, wrong_solution, solution_position = self.CreateProblem()
+
         # text with the math question
         self.labelVariable = tkinter.StringVar()
         label = tkinter.Label(self, textvariable=self.labelVariable,
                               anchor="center", fg="white", bg="black", text="Helvetica",
                               font=("Helvetica", 45))
         label.grid(column=0, row=0, columnspan=2, sticky='EW')
-        self.labelVariable.set("1 + 2")
+        self.labelVariable.set(str(int_1) + " + " + str(int_2))
         self.grid_columnconfigure(0, weight=1)  # stretch to the whole window size
         self.update()
 
-        # answer fields
-        button2 = tkinter.Button(self, text="3", font="Helvetica 65 bold",
-                                 command=self.OnButtonClick, height=1, width=3)
+        # answer fields (Buttons)
+        answer_fields = [solution, wrong_solution]
+        button2 = tkinter.Button(self, text=answer_fields[solution_position], font="Helvetica 65 bold",
+                                 command=self.OnButtonClickButton2, height=1, width=3)
         button2.place(relx=0.25, rely=0.5, anchor=tkinter.CENTER)
 
-        button3 = tkinter.Button(self, text="4", font="Helvetica 65 bold",
-                                 command=self.OnButtonClick, height=1, width=3)
+        button3 = tkinter.Button(self, text=answer_fields[1 ^ solution_position], font="Helvetica 65 bold",
+                                 command=self.OnButtonClickButton3, height=1, width=3)
         button3.place(relx=0.75, rely=0.5, anchor=tkinter.CENTER)
 
-    def OnButtonClick(self):
-        self.labelVariable.set(self.entryVariable.get() + " (You clicked the button)")
-        self.entry.focus_set()
-        self.entry.selection_range(0, tkinter.END)
+    def CreateProblem(self):
+        # create question
+        int_1 = random.randint(0, 6)
+        int_2 = random.randint(0, 6)
+        solution = int_1 + int_2
+        wrong_solution = solution + 1  # todo - more complicate wrong solution needed
+        solution_position = random.randint(0, 1)  # change the position of the solution randomly
+        return int_1, int_2, solution, wrong_solution, solution_position
 
-    def OnPressEnter(self, event):
-        self.labelVariable.set(self.entryVariable.get() + " (You pressed ENTER)")
-        self.entry.focus_set()
-        self.entry.selection_range(0, tkinter.END)
+    def OnButtonClickButton2(self):
+        pass
+
+    def OnButtonClickButton3(self):
+        pass
 
 
 if __name__ == "__main__":
     app = MathProgram(None)
-    app.title('Math is fun')
+    app.title('Math is fun - Addition')
     app.mainloop()
