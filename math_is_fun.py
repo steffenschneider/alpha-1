@@ -44,13 +44,14 @@ class MathProgram(tkinter.Tk):
     def __init__(self, parent):
         tkinter.Tk.__init__(self, parent)
         self.parent = parent
-        self.initialize()
-
-    def initialize(self):
         self.grid()
         self.geometry("400x400+300+150")  # field size
 
-        # create first problem
+        for i in range(2):
+            self.run_game()
+
+    def run_game(self):
+        # create problem
         int_1, int_2, solution, wrong_solution, solution_position = self.CreateProblem()
 
         # text with the math question
@@ -83,9 +84,13 @@ class MathProgram(tkinter.Tk):
         return int_1, int_2, solution, wrong_solution, solution_position
 
     def OnButtonClickButton2(self):
-        pass
+        self.Check_solution(2)
 
     def OnButtonClickButton3(self):
+        self.Check_solution(3)
+
+    def Check_solution(self, button_number):
+        # todo
         pass
 
 
