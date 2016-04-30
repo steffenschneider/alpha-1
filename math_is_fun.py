@@ -82,6 +82,8 @@ class MathProgram(tkinter.Tk):
         int_2 = random.randint(0, 6)
         solution = int_1 + int_2
         wrong_solution = solution + random.choice([-3, -2, -1, 1, 2, 3])  # don't use 0 here
+        if wrong_solution < 0:  # don't show negative wrong solutions
+            wrong_solution = solution + 2
         solution_position = random.randint(0, 1)  # change the position of the solution randomly
         return int_1, int_2, solution, wrong_solution, solution_position
 
