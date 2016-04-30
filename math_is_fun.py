@@ -13,8 +13,9 @@ Version 1:
 TODO:
 - generate random numbers       DONE
 - calculation                   DONE
-- click-event + compare results
+- click-event + compare results DONE
 - feature: wenn Kind drei Farben richtig hat darf es background-color wählen
+- select difficulty
 
 PLAN:
 - at the beginning
@@ -28,14 +29,14 @@ PLAN:
 - the game finishes after 10-15 questions
 
 CHANGELOG:
-- 30.04.16 Button size changed
+- 30.04.16 first working solution
 """
 
 __author__ = "Steffen Schneider, Erik Streb"
 __copyright__ = "..."
 __credits__ = ["Steffen Schneider, Erik Streb"]
 __license__ = "GPL"
-__version__ = "0.5"
+__version__ = "0.5.1"
 __maintainer__ = "Steffen Schneider"
 __email__ = "nanosecond@web.de"
 __status__ = "Development"
@@ -48,7 +49,7 @@ class MathProgram(tkinter.Tk):
         self.grid()
         self.geometry("400x400+300+150")  # field size
         self.configure(background='#090')  # green color
-        self.run_game()
+        self.run_game()  # first call
 
     def run_game(self):
         # create problem
@@ -68,16 +69,15 @@ class MathProgram(tkinter.Tk):
         answer_fields = [solution, wrong_solution]
         button2 = tkinter.Button(self, text=answer_fields[solution_position], font="Helvetica 65 bold",
                                  command=lambda: self.check_solution(2, solution_position), height=1, width=3,
-                                 fg="black", bg="yellow")
+                                 fg="black", bg="yellow", activebackground="yellow")
         button2.place(relx=0.25, rely=0.5, anchor=tkinter.CENTER)
 
         button3 = tkinter.Button(self, text=answer_fields[1 ^ solution_position], font="Helvetica 65 bold",
                                  command=lambda: self.check_solution(3, solution_position), height=1, width=3,
-                                 fg="black", bg="yellow")
+                                 fg="black", bg="yellow", activebackground="yellow")
         button3.place(relx=0.75, rely=0.5, anchor=tkinter.CENTER)
 
     def create_problem(self):
-        # create question
         int_1 = random.randint(0, 6)
         int_2 = random.randint(0, 6)
         solution = int_1 + int_2
@@ -87,10 +87,8 @@ class MathProgram(tkinter.Tk):
 
     def check_solution(self, button_number, solution_position):
         if button_number - 2 == solution_position:
-            print("PASS")
             self.configure(background='#090')  # green color
         else:
-            print("FAIL")
             self.configure(background='#900')  # red color
         self.run_game()
 
