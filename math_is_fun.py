@@ -1,30 +1,32 @@
-#!/usr/bin/python
-# -*- coding: iso-8859-1 -*-
-
-# uuups deine Beschreibung ist weg. (Sorry)
+#!/usr/bin/env python3
+# coding: utf-8
+# !!! wir machen bitte alles mit utf-8, wir sind im Jahr 2016!!!
+# Stil: Best of the Best Practices (https://gist.github.com/sloria/7001839)
 
 import tkinter
 
 """
-Können wir erstmal ein Spiel machen wo man die Lösung auf einem von zwei Buttons angezeigt bekommt?
+KÃ¶nnen wir erstmal ein Spiel machen wo man die LÃ¶sung auf einem von zwei
+Buttons angezeigt bekommt?
 
 TODO:
 HEAD
-- eventuell anstatt grid canvas nutzen; damit lässt sich die Position pixelgenau einstellen
+- eventuell anstatt grid canvas nutzen; damit lÃ¤sst sich die Position
+  pixelgenau einstellen
 
 PLAN:
-- in the beginning
+- at the beginning
 -- the difficulty is set
-- the math question dependent on the difficulty is shown
-- the user choose the solution from one of the buttons
+- the math question is shown dependent on the difficulty
+- the user chooses a solution from one of the buttons
 - if clicked
 -- PASS or FAIL is shown
 -- the score is update
--- after 5 s a new question is shown
-- the game finished after 10-15 questions
+-- after 5 secs a new question is shown
+- the game finishes after 10-15 questions
 """
 
-class math_program(tkinter.Tk):
+class MathProgram(tkinter.Tk):
     def __init__(self, parent):
         tkinter.Tk.__init__(self, parent)
         self.parent = parent
@@ -36,19 +38,22 @@ class math_program(tkinter.Tk):
 
         # text with the math question
         self.labelVariable = tkinter.StringVar()
-        label = tkinter.Label(self, textvariable=self.labelVariable, anchor="center", fg="white", bg="black",
-                              text="Helvetica", font=("Helvetica", 25))
+        label = tkinter.Label(self, textvariable=self.labelVariable,
+            anchor="center", fg="white", bg="black", text="Helvetica",
+            font=("Helvetica", 25))
         label.grid(column=0, row=0, columnspan=2, sticky='EW')
-        self.labelVariable.set(u"1 + 2")
+        self.labelVariable.set("1 + 2")
         self.grid_columnconfigure(0, weight=1)  # stretch to the whole window size
         self.update()
-        self.geometry(self.geometry())
+        #self.geometry(self.geometry()) # <-- wozu ist das hier? das ist doch
+                                        # schon oben definiert
 
         # answer fields
-        # TODO: Button-Größe und ausrichten
-        button2 = tkinter.Button(self, text=u"3", command=self.OnButtonClick)
+        # TODO: Button-GrÃ¶ÃŸe und ausrichten
+        button2 = tkinter.Button(self, text="3", command=self.OnButtonClick)
         button2.grid(column=0, row=1)
-        button3 = tkinter.Button(self, text=u"4", command=self.OnButtonClick)
+
+        button3 = tkinter.Button(self, text="4", command=self.OnButtonClick)
         button3.grid(column=1, row=1)
 
     def OnButtonClick(self):
@@ -61,7 +66,8 @@ class math_program(tkinter.Tk):
         self.entry.focus_set()
         self.entry.selection_range(0, tkinter.END)
 
+
 if __name__ == "__main__":
-    app = math_program(None)
+    app = MathProgram(None)
     app.title('Math is fun')
     app.mainloop()
