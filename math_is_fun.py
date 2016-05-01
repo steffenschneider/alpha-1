@@ -32,7 +32,7 @@ CHANGELOG:
 - 30.04.16 first working solution
 """
 
-__author__ = "Steffen Schneider, Erik Streb"
+__author__ = "Steffen Schneider, Erik Streb (?)"
 __copyright__ = "..."
 __credits__ = ["Steffen Schneider, Erik Streb"]
 __license__ = "GPL"
@@ -98,5 +98,5 @@ class MathProgram(tkinter.Tk):
 
 if __name__ == "__main__":
     app = MathProgram(None)
-    app.title('Math is fun - Addition')
+    app.title('Math is fun - Addition - Version ' + str(__version__))
     app.mainloop()
