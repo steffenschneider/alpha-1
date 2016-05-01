@@ -1,5 +1,5 @@
 """
-Get new from news-websites.
+Get news from news-websites.
 Work in progress!!!
 """
 
