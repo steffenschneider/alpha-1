@@ -20,9 +20,8 @@ def copytree(src, dst, symlinks=False, ignore=None):
     for item in os.listdir(src):
         s = os.path.join(src, item)
         d = os.path.join(dst, item)
-        # if re.findall(r"([^/]+$)", s)[0][0] != ".":
         try:
-            if os.path.isdir(s):
+            if os.path.isdir(s):  # if dir exist
                 shutil.copytree(s, d, symlinks, ignore)
                 print('Files copied with shutil.copytree')
             else:
@@ -33,8 +32,16 @@ def copytree(src, dst, symlinks=False, ignore=None):
             pass
 
 
-# todo - make a backup dependent on the usb-stick
-copytree("/home/kame/lex", "/media/INTENSO/lex")
-copytree("/home/kame/malen", "/media/INTENSO/malen")
-copytree("/home/kame/programme", "/media/INTENSO/programme")
-copytree("/home/kame/sound", "/media/INTENSO/sound")
+# Dropbox files
+print("copy Dropbox")
+copytree("/home/kame/Dropbox", "/media/kame/TOSHIBA EXT/Steffen/Dropbox")
+
+# Desktop files
+print("copy main")
+copytree(r"/home/kame/Desktop/main", "/media/kame/TOSHIBA EXT/Steffen/main")
+# print("copy bilder")
+# copytree(r"/home/kame/Desktop/main/bilder", "/media/kame/TOSHIBA EXT/Steffen/bilder")
+# print("copy mp3")
+# copytree(r"/home/kame/Desktop/main/bilder", "/media/kame/TOSHIBA EXT/Steffen/mp3")
+# print("copy wichtig")
+# copytree(r"/home/kame/Desktop/main/wichtig", "/media/kame/TOSHIBA EXT/Steffen/wichtig")
