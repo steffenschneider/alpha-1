@@ -1,7 +1,4 @@
-import tkinter
-
-Tkinter = tkinter
-from tkinter import Tk, Frame, Canvas, SUNKEN
+from tkinter import SUNKEN, Tk, Canvas, Frame
 
 
 class Ball:
@@ -59,5 +56,5 @@ try:
             items[i] = items[i]()
             root.update_idletasks()  # redraw
         root.update()  # process events
-except TclError:
+except:
     pass  # to avoid errors when the window is closed
