@@ -17,10 +17,11 @@ This is an interactive game
 TODO
 - create a circle
 - move circle according to gravity laws
-- add obstacle
+- add obstacle were objects are bounce
 """
 
 import time
+
 import tkinter
 
 
@@ -33,7 +34,7 @@ class Gravity_game(tkinter.Tk):
         self.configure(background='#090')  # green color
         # self.run_game()  # first call
 
-
+        tkinter.Canvas.create_oval()
         C = tkinter.Canvas(tkinter.Tk(), bg="blue", height=250, width=300)
         coord = 10, 50, 240, 210
         arc = C.create_arc(coord, start=0, extent=150, fill="red")
