@@ -15,40 +15,67 @@ Balls in a TKinter-GUI moving downwards because of gravity.
 This is an interactive game
 
 TODO
-- create a circle
 - move circle according to gravity laws
 - add obstacle were objects are bounce
 """
 
 import time
-
-import tkinter
-
-
-class Gravity_game(tkinter.Tk):
-    def __init__(self, parent):
-        tkinter.Tk.__init__(self, parent)
-        self.parent = parent
-        self.grid()
-        self.geometry("400x400+300+150")  # field size
-        self.configure(background='#090')  # green color
-        # self.run_game()  # first call
-
-        tkinter.Canvas.create_oval()
-        C = tkinter.Canvas(tkinter.Tk(), bg="blue", height=250, width=300)
-        coord = 10, 50, 240, 210
-        arc = C.create_arc(coord, start=0, extent=150, fill="red")
-
-    def run_game(self):
-        count = 0
-        while 1:
-            count += 1
-            print(count)
-            time.sleep(1)
-            self.update()
+from tkinter import SUNKEN, Tk, Canvas, Frame
 
 
-if __name__ == "__main__":
-    app = Gravity_game(None)
-    app.title('Gravity game - Version ' + str(__version__))
-    app.mainloop()
+class Ball:
+    def __init__(self, canvas, xy, ink, vecx, vecy):
+        self.canvas = canvas
+        self.id = self.canvas.create_oval(5, 5, 15, 15, fill=ink)
+        self.canvas.move(self.id, xy[0], xy[1])
+        if vecx > 0:
+            self.vecx = vecx
+            self.start = self.right
+        else:
+            self.vecx = -vecx
+            self.start = self.left
+        self.vecy = vecy
+
+    def __call__(self):
+        return self.start  # get things going
+
+    def right(self):
+        xy = self.canvas.coords(self.id)
+        if xy[2] >= self.canvas.winfo_width():
+            return self.left()
+        self.canvas.move(self.id, self.vecx, self.vecy)
+        return self.right
+
+    def left(self):
+        xy = self.canvas.coords(self.id)
+        if xy[0] <= 0:
+            return self.right()
+        self.canvas.move(self.id, -self.vecx, self.vecy)
+        return self.left
+
+
+root = Tk()
+root.title("Blobs")
+root.resizable(0, 0)
+frame = Frame(root, bd=10, relief=SUNKEN)
+frame.pack()
+canvas = Canvas(frame, width=500, height=300, bd=0, highlightthickness=0)
+canvas.pack()
+speed = 0.0003
+dy = 1
+items = [
+    Ball(canvas, (0, 10), "red", 0.101, 0.020)
+]
+
+root.update()  # fix geometry
+
+# loop over items
+try:
+    while 1:
+        for i in range(len(items)):
+            items[i] = items[i]()
+            root.update_idletasks()  # redraw
+            time.sleep(.001)
+        root.update()  # process events
+except:
+    pass  # to avoid errors when the window is closed
