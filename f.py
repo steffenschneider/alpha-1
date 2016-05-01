@@ -12,7 +12,7 @@ from selenium import webdriver
 # os-functions ############################################################
 
 
-def get_os_name():
+def get_os_name() -> str:
     """ e.g. posix, nt """
     result = os.name
     if result == 'posix':
@@ -28,7 +28,7 @@ def change_dir(path):
     os.chdir(path)
 
 
-def get_current_path():
+def get_current_path() -> str:
     result = os.getcwd()
     return result
 
@@ -38,14 +38,26 @@ def get_script_path():
     return result
 
 
+def is_dir_available(path) -> bool:
+    import os
+    result = os.path.isdir(path)
+    return result
+
+
+def is_file_available(path) -> bool:
+    import os
+    result = os.path.exists(path)
+    return result
+
+
 # time-functions ########################################
 
 
-def get_mod():
+def get_mod() -> str:
     get_minute_of_the_day()
 
 
-def get_minute_of_the_day():
+def get_minute_of_the_day() -> str:
     hour = strftime("%H", localtime())
     minute = strftime("%M", localtime())
     minute_of_the_day = int(hour) * 60 + int(minute)
@@ -115,11 +127,11 @@ def get_weekday():
 ##################################################
 
 
-def get_ip():
+def get_ip() -> str:
     get_my_ip()
 
 
-def get_my_ip():
+def get_my_ip() -> str:
     # myip = socket.gethostbyname(socket.gethostname())
     myip = os.system("ifconfig | awk '/inet addr/{print substr($2,6)}'")
     print(myip)
@@ -134,14 +146,14 @@ def upgrade_linux():
     os.system('echo %s|sudo -S %s' % (sudo_password, command))
 
 
-def check_if_root():
+def check_if_root() -> bool:
     if os.geteuid() == 0:
         return True
     else:
         return False
 
 
-def check_wlan():
+def check_wlan() -> bool:
     url = "http://www.google.de"
     try:
         if urllib.request.urlretrieve(url, "/home/kame/test.txt"):
@@ -152,7 +164,7 @@ def check_wlan():
         return False
 
 
-def get_temperature():
+def get_temperature() -> str:
     from pyvirtualdisplay import Display
 
     display = Display(visible=0, size=(800, 600))
@@ -205,7 +217,7 @@ def get_filenames_from_dir(path):
     return glob.glob(path)
 
 
-def get_installed_modules():
+def get_installed_modules() -> list:
     import pip
     installed_packages = pip.get_installed_distributions()
     # installed_packages_list = sorted(["%s==%s" % (i.key, i.version)
@@ -214,16 +226,25 @@ def get_installed_modules():
     return installed_packages_list
 
 
-def battery():
+def battery() -> str:
     get_battery_status_in_percent()
 
 
-def get_battery_status_in_percent():
+def get_battery_status_in_percent() -> str:
+    #
     path = "/sys/class/power_supply/BAT0/energy_now"
+    if is_dir_available(path):
+        pass
+    else:
+        path = "/sys/class/power_supply/BAT0/charge_now"
     now_ = open(path).read()
     # print("now: " + str(now_))
 
     path = "/sys/class/power_supply/BAT0/energy_full"
+    if is_dir_available(path):
+        pass
+    else:
+        path = "/sys/class/power_supply/BAT0/charge_full"
     full_ = open(path).read()
     # print("full: " + str(full_))
 
@@ -239,11 +260,11 @@ def get_battery_status_in_percent():
     return result
 
 
-def count_functions():
+def count_functions() -> str:
     count_my_functions()
 
 
-def count_my_functions():
+def count_my_functions() -> str:
     import re
     path = "/home/kame/Dropbox/code/python/scripts/f.py"
     lst = []
@@ -297,6 +318,7 @@ def show_top():
 
 
 def _3264():
+    """architecture"""
     show_32_or_64_bit()
 
 

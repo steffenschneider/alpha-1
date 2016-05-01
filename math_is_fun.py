@@ -4,6 +4,7 @@
 # Stil: Best of the Best Practices (https://gist.github.com/sloria/7001839)
 
 import random
+import time
 import tkinter
 
 """
@@ -64,6 +65,8 @@ class MathProgram(tkinter.Tk):
         self.labelVariable.set(str(int_1) + " + " + str(int_2))
         self.grid_columnconfigure(0, weight=1)  # stretch to the whole window size
         self.update()
+
+        time.sleep(2)  # avoid double click
 
         # answer fields (Buttons)
         answer_fields = [solution, wrong_solution]
