@@ -6,7 +6,7 @@ Show the use of new tags.
 """
 
 
-def run():
+def main():
     import re
     print("+++ lex_analyse_tags.py called +++")
 
@@ -84,4 +84,4 @@ def run():
 
 
 if __name__ == '__main__':
-    run()
+    main()
