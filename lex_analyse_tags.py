@@ -21,7 +21,7 @@ def main():
                'Ernährung', 'Gehirn', 'Genetik', 'Geographie',
                'Geologie', 'Geschichte', 'git', 'GPS', 'Hardware', 'Hochfrequenztechnik', 'HTML', 'Japan',
                'Java', 'JavaScript', 'Jenkins', 'jQuery', 'KI', 'Kochen', 'Kommunikation', 'Lasertechnik',
-               'Latex', 'Linux', 'Materialwissenschaften', 'Mathematik', 'Matlab',
+               'Latex', 'Linux', 'Literatur', 'Materialwissenschaften', 'Mathematik', 'Matlab',
                'Mechanik', 'Medizin', 'Messtechnik', 'Mikrocontroller',
                'MRT', 'Nico', 'Optik', 'Organisation', 'Persönlichkeit', 'Philosophie', 'PHP', 'Physik', 'Physiologie',
                'Politik', 'Programmieren', 'Programmieren-Vorgehensmodell',

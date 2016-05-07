@@ -71,7 +71,7 @@ def update_system():
 
     programs = ['anki', 'bum', 'chromium-browser', 'chromium-codexs-ffmpeg',
                 'conky', 'ding', 'filezilla', 'firefox',
-                'flashplugin-installer', 'git',
+                'flashplugin-installer', 'flightgear', 'git',
                 'gparted', 'ipython',
                 'nautilus-dropbox', 'mkgmap', 'mousepad', 'mypaint',
                 'nmap', 'pdfsam', 'preload',

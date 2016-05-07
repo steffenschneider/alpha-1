@@ -68,16 +68,18 @@ lst = [
     'Widerstand', 'Wind', 'Windmuehle', 'Windrad', 'Winkelmesser', 'Wippe', 'Wirbel', 'WLAN', 'Wochenende',
     'Wundverband', 'Zahn', 'Zahnrad', 'Zahnreinigung', 'Zaun', 'Zeit', 'Zeitlupe', 'Zeitung', 'Zelle',
     'Zen', 'Ziehen', 'Ziffer', 'Zitteraal', 'Zucker', 'Zufall', 'Zug', 'Simulation', 'zunehmender-Verfall',
-    'Zusammenfuegen', 'Übersetzung', 'Sinne'
+    'Zusammenfuegen', 'Übersetzung', 'Sinne', 'Scheibenwischer', 'Sand', 'Kristall', 'Knoten', 'Seilwinde',
+    'Brezelform', 'Kanone', 'Blumen gießen', 'Automatik', 'Vorleseprogramm', 'Pfeife', 'Rutsche',
+    'Schutthexe'
 ]
 
 print('\nAuswahl aus ' + str(len(lst)) + ' Woertern!\n')
 for i in range(22):
-    print("\n\n\n\n\n\n\n\n\n\n\n\n\n")
+    print("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n")
     ran_a = random.randint(0, len(lst) - 1)
     ran_b = random.randint(0, len(lst) - 1)
     ran_c = random.randint(0, len(lst) - 1)
     #print('                            ' + lst[ran_a] + '   ' + lst[ran_b] + '   ' + lst[ran_c])
     print('                         ' + lst[ran_a] + '   ' + lst[ran_b])
-    print("")
+    print("\n\n\n\n")
     time.sleep(22)
