@@ -79,6 +79,7 @@ def update_system():
                 'thunderbird', 'tmux', 'tuxpaint', 'vlc', 'vim',
                 'vim-runtime', 'virtualbox', 'virtualbox-guest-dkms',
                 'wine', 'wireshark', 'xchat', 'xvfb']
+
     for program in programs:
         command = 'sudo apt-get install ' + str(program) + ' -y'
         os.system('echo %s|sudo -S %s' % (sudo_password, command))

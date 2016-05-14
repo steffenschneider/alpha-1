@@ -65,23 +65,18 @@ def get_podcasts():
                 titles = re.findall("[\d].*/(.*mp3)", content_)
 
                 # print first mp3-url
-                print(333)
                 mp3_url = urls[2]  # the third element is the first mp3
                 print(mp3_url)
                 path = "/home/kame/Dropbox/new_podcasts/"
 
-                print(555)
                 # download file if not downloaded yet
                 podcastlist = f.get_filenames_from_dir(path)
                 found = 0
-                print(666)
                 for j in range(len(podcastlist)):
                     if str(mp3_url) in podcastlist[j]:
                         # print("File downloaded before")
                         found = 1  # file already downloaded
-                print(888)
                 if found == 0:  # if not yet downloaded
-                    print(999)
                     print("File number " + str(i + 1) + " will be downloaded now.")
                     place = str(path) + str(titles[2])
                     urllib.request.urlretrieve(mp3_url, place)
