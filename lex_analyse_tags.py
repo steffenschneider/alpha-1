@@ -18,7 +18,7 @@ def main():
     taglist = ['!', '!!', '!!!', 'A', 'Abkürzung', 'Algebra', 'Arbeit', 'Astronomie',
                'Auto', 'awk', 'Bash', 'Biologie', 'Botanik',
                'Buch', 'C', 'Chemie', 'Computer', 'Cpp', 'Datenbank', 'Elektrotechnik', 'Erfindung',
-               'Ernährung', 'Gehirn', 'Genetik', 'Geographie',
+               'Ernährung', 'Error', 'Gehirn', 'Genetik', 'Geographie',
                'Geologie', 'Geschichte', 'git', 'GPS', 'Hardware', 'Hochfrequenztechnik', 'HTML', 'Japan',
                'Java', 'JavaScript', 'Jenkins', 'jQuery', 'KI', 'Kochen', 'Kommunikation', 'Lasertechnik',
                'Latex', 'Linux', 'Literatur', 'Materialwissenschaften', 'Mathematik', 'Matlab',

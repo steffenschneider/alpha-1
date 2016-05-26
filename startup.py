@@ -4,6 +4,10 @@ import random
 import time
 
 while 1:
+    print("remove_pyc()")
+    import remove_pyc
+
+    remove_pyc.main()
 
     print("lex_analyse_tags()")
     import lex_analyse_tags
@@ -13,12 +17,10 @@ while 1:
     import lex_count_tags
     lex_count_tags.main()
 
-    rnd = random.randint(10)
-    if rnd == 1:
-        print("lex_sort()")
-        import lex_sort
+    print("lex_sort()")
+    import lex_sort
 
-        lex_sort.main()
+    lex_sort.main()
 
     print("podcast_to_dropbox()")
     import podcast_to_dropbox

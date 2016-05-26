@@ -4,7 +4,7 @@ import os
 
 
 def update_system():
-    sudo_password = input()
+    sudo_password = input("password:")
 
     print('sudo dpkg --configure -a')
     command = 'sudo dpkg --configure -a'  # repair the system
@@ -99,7 +99,7 @@ def update_system():
     #    print('remove some programs with apt-get')
     #    programs2 = ['amarok', 'audacious', 'bfgminer', 'calibre',
     #                 'clementine', 'cowsay', 'geany',
-    #	         'gpodder', 'kdiff3', 'liferea', 'lmms',
+    #	              'gpodder', 'kdiff3', 'liferea', 'lmms',
     #                 'lynx', 'meld', 'midori', 'mines', 'openbve',
     #                 'rosegarden', 'simutrans', 'sudoku', 'supertuxkart']
     #    for program in programs2:

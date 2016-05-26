@@ -10,7 +10,7 @@ for path in pathes:
     file_input = open(path, "r")
     text = file_input.readlines()  # .read() read only one line
 
-    lst_wrong = ['garnicht', 'Pyhton', 'daselbe']
+    lst_wrong = ['garnicht', 'Pyhton', 'daselbe', 'werdne']
 
     for item in lst_wrong:
         for line in text:

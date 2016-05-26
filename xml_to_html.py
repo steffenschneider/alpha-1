@@ -24,16 +24,54 @@ url = "/tmp/links.html"
 f = open(url, "w")
 f.write("<html>")
 f.write("<head>")
+f.write('<meta charset="utf-8"/>')
 f.write("</head>")
 f.write("<body>")
 f.write("My bookmarks:<br>")
+
 n_items = len(xml.xpath("//item"))
-print(n_items)
-for i in range(1, n_items + 1):
-    f.write(str(xml.xpath("//item[" + str(i) + "]/category/text()")[0]))
-    f.write(str("\t\t\t"))
-    name_ = str(xml.xpath("//item[" + str(i) + "]/name/text()")[0])
-    f.write("<a href=\"" + str(xml.xpath("//item[" + str(i) + "]/url/text()")[0]) + "\">" + str(name_) + "</a><br>")
+print(str(n_items) + " bookmarks in the xml-file")
+
+# sort categories in 2D-list
+elements = []
+for i in range(n_items):
+    elements.append([])
+
+    # first column: category
+    category = str(xml.xpath("//item[" + str(i + 1) + "]/category/text()")[0])
+    elements[i].append(category)
+
+    # second column: url
+    name_ = str(xml.xpath("//item[" + str(i + 1) + "]/name/text()")[0])
+    urltext = "<a href=\"" + str(xml.xpath("//item[" + str(i + 1) + "]/url/text()")[0]) + "\">" + str(
+        name_) + "</a><br>"
+    elements[i].append(urltext)
+
+    active = str(xml.xpath("//item[" + str(i + 1) + "]/active/text()")[0])
+    elements[i].append(active)
+
+elements = sorted(elements, key=lambda l: l[0])
+
+# write sorted bookmarks to html
+actual_category = ''
+for i in range(n_items):
+    if str(elements[i][0]) == actual_category:  # if new category write category header to html
+        pass
+    else:
+        f.write('<br>')
+        f.write('&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;')
+        f.write('&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;')
+        f.write('<font size="5">' + str(elements[i][0]).title() + '</font>')
+        f.write('<br>')
+        f.write('<br>')
+        actual_category = elements[i][0]
+    # write url
+    if str(elements[i][2]) == 'false':
+        f.write('<span style=\"opacity: 0.5;\">')  # high opacity for inactive urls
+    f.write('<font size="3">' + str(elements[i][1]) + '</font>')
+    if str(elements[i][2]) == 'false':
+        f.write('</span>')
+
 f.write("</body>")
 f.write("</html>")
 
