@@ -8,10 +8,10 @@ def main():
     import time
 
     while 1:
-        category = ['Arbeit', 'Astronomie', 'Computer',
-                    'Gehirn', 'Geschichte', 'Persönlichkeit', 'Physiologie',
-                    'Politik', 'Psychologie', 'Python', 'Rest', 'Testing',
-                    'Testprogramm', 'Tier', 'Wirtschaft']
+        # category = ['Arbeit', 'Astronomie', 'Computer',
+        #             'Gehirn', 'Geschichte', 'Persönlichkeit', 'Physiologie',
+        #             'Politik', 'Psychologie', 'Python', 'Rest', 'Testing',
+        #             'Testprogramm', 'Tier', 'Wirtschaft']
 
         # read file content
         path = "/home/kame/Dropbox/"
@@ -41,9 +41,9 @@ def main():
                     count += 1
                     # print(rnd)
                     if count == rnd:
-                        if text[i + 1][1:-2] in category:
-                            pos = i
-                            found = 1
+                        # if text[i + 1][1:-2] in category:
+                        pos = i
+                        found = 1
 
         # show random article
         for i in range(44):

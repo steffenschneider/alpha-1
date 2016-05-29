@@ -20,7 +20,7 @@ xml = etree.parse(xmlpath)
 # todo - sort for category
 # todo - check for empty xml-items
 # convert xml data to html structure and save data in html-file
-url = "/tmp/links.html"
+url = "/home/kame/Dropbox/data/links.html"
 f = open(url, "w")
 f.write("<html>")
 f.write("<head>")
@@ -67,7 +67,7 @@ for i in range(n_items):
         actual_category = elements[i][0]
     # write url
     if str(elements[i][2]) == 'false':
-        f.write('<span style=\"opacity: 0.5;\">')  # high opacity for inactive urls
+        f.write('<span style=\"opacity: 0.4;\">')  # high opacity for inactive urls
     f.write('<font size="3">' + str(elements[i][1]) + '</font>')
     if str(elements[i][2]) == 'false':
         f.write('</span>')

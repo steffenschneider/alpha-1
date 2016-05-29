@@ -32,4 +32,4 @@ while 1:
         import linux
         linux.update_system()
 
-    time.sleep(60 * 60)
+    time.sleep(6 * 60 * 60)
