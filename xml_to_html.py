@@ -8,8 +8,6 @@ Sort files dependent of the category.
 An '&' in an url doesn't work because of the xml-file.
 """
 
-import webbrowser
-
 from lxml import etree
 
 # get content from xml
@@ -76,5 +74,5 @@ f.write("</body>")
 f.write("</html>")
 
 # open html-file
-new = 2  # open in a new tab, if possible
-webbrowser.open(url, new=new)
+# new = 2  # open in a new tab, if possible
+# webbrowser.open(url, new=new)
