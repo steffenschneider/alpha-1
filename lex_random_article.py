@@ -13,6 +13,8 @@ def main():
         #             'Politik', 'Psychologie', 'Python', 'Rest', 'Testing',
         #             'Testprogramm', 'Tier', 'Wirtschaft']
 
+        unwant_category = ['git', 'Verweis']
+
         # read file content
         path = "/home/kame/Dropbox/"
         filename = "main-lex.txt"
@@ -41,9 +43,9 @@ def main():
                     count += 1
                     # print(rnd)
                     if count == rnd:
-                        # if text[i + 1][1:-2] in category:
-                        pos = i
-                        found = 1
+                        if text[i + 1][1:-2] not in unwant_category:
+                            pos = i
+                            found = 1
 
         # show random article
         for i in range(44):

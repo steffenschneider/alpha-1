@@ -22,15 +22,15 @@ def main():
                'Geologie', 'Geschichte', 'git', 'GPS', 'Hardware', 'Hochfrequenztechnik', 'HTML', 'Japan',
                'Java', 'JavaScript', 'Jenkins', 'jQuery', 'KI', 'Kochen', 'Kommunikation', 'Lasertechnik',
                'Latex', 'Linux', 'Literatur', 'Materialwissenschaften', 'Mathematik', 'Matlab',
-               'Mechanik', 'Medizin', 'Messtechnik', 'Mikrocontroller',
+               'Mechanik', 'Medien', 'Medizin', 'Messtechnik', 'Mikrocontroller',
                'MRT', 'Nico', 'Optik', 'Organisation', 'Persönlichkeit', 'Philosophie', 'PHP', 'Physik', 'Physiologie',
                'Politik', 'Programmieren', 'Programmieren-Vorgehensmodell',
                'Psychologie', 'Python', 'Quantenphysik', 'Raumfahrt',
-               'Radar', 'Rechtschreibung', 'Regex', 'Rest', 'Robot',
+               'Radar', 'Rechtschreibung', 'Regex', 'Religion', 'Rest', 'Robot',
                'Security', 'Selenium', 'Signalverarbeitung',
                'Software', 'Soziologie', 'SQL', 'Strahlenphysik', 'svn', 'Technik', 'Testing',
                'Testprogramm', 'Tier', 'todo', 'Umweltschutz', 'VB', 'Verweis',
-               'Windows', 'Wirtschaft', 'Wortschatz', 'WPF', 'XAML', 'XML', 'XNA', 'Zen']
+               'Windows', 'Wirtschaft', 'Wissen', 'Wortschatz', 'WPF', 'XAML', 'XML', 'XNA', 'Zen']
 
     # key: used tag
     # value: tag you should use instead
