@@ -58,7 +58,7 @@ def main():
                 end = 1
         print("")
 
-        time.sleep(25)
+        time.sleep(20)
 
 
 if __name__ == '__main__':

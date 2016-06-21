@@ -3,7 +3,6 @@
 
 # get content
 pathes = ["/home/kame/Dropbox/main-lex.txt",
-          "/home/kame/Dropbox/main-lex-arbeit.txt",
           "/home/kame/Dropbox/diary.txt"
           ]
 
