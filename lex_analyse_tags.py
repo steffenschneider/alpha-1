@@ -25,7 +25,7 @@ def main():
                'Mechanik', 'Medien', 'Medizin', 'Messtechnik', 'Mikrocontroller',
                'MRT', 'Nico', 'Optik', 'Organisation', 'Persönlichkeit', 'Philosophie', 'PHP', 'Physik', 'Physiologie',
                'Politik', 'Programmieren', 'Programmieren-Vorgehensmodell',
-               'Psychologie', 'Python', 'Quantenphysik', 'Raumfahrt',
+               'Psychologie', 'Python', 'Quantenphysik', 'r', 'Raumfahrt',
                'Radar', 'Rechtschreibung', 'Regex', 'Religion', 'Rest', 'Robot',
                'Security', 'Selenium', 'Signalverarbeitung',
                'Software', 'Soziologie', 'SQL', 'Strahlenphysik', 'svn', 'Technik', 'Testing',
