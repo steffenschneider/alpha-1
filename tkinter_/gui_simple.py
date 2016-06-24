@@ -65,14 +65,14 @@ class App:
         ##################################
 
 
-        e = Label(master, text="DATE: " + str(datetime.now().strftime("%d")) + "." \
-                               + str(datetime.now().strftime("%m")) + "." \
-                               + str(datetime.now().strftime("%Y")) \
+        e = Label(master, text="DATE: " + str(datetime.now().strftime("%d")) + "."
+                               + str(datetime.now().strftime("%m")) + "."
+                               + str(datetime.now().strftime("%Y"))
                   , font=("Helvetica", fontsize))
         e.pack()
-        f = Label(master, text="TIME: " + str(datetime.now().strftime("%H")) + ":" \
-                               + str(datetime.now().strftime("%M")) + ":" \
-                               + str(datetime.now().strftime("%S")) \
+        f = Label(master, text="TIME: " + str(datetime.now().strftime("%H")) + ":"
+                               + str(datetime.now().strftime("%M")) + ":"
+                               + str(datetime.now().strftime("%S"))
                   , font=("Helvetica", fontsize))
         f.pack()
 
@@ -80,7 +80,7 @@ class App:
         # BUTTON: START MEASUREMENT      #
         ##################################
 
-        self.hi_there = Button(frame, text="START MEASUREMENT" \
+        self.hi_there = Button(frame, text="START MEASUREMENT"
                                , font=("Helvetica", fontsize), command=self.say_hi)
         self.hi_there.pack(side=BOTTOM)
 

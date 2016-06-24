@@ -16,6 +16,7 @@ import struct
 class App:
     def __init__(self, master):
 
+        self.data = self.data.T
         self.frame = Frame(master)
         self.frame.pack()
 
@@ -89,12 +90,11 @@ uwb_daten/avg2_2000/201106151327231_cycle_avg_2_modul_74.uwb', "rb")  # rb = rea
         self.data = struct.unpack('511i', self.data)
         self.data = list(self.data)
         self.data = np.array(self.data)[np.newaxis]
-        self.data = self.data.T
         self.data4 = np.concatenate((self.data4[:, :self.counter], self.data, self.data1[:, self.counter + 1:]), axis=1)
         self.fig4.imshow(self.data4)
 
         self.canvas.show()
-        self.counter = self.counter + 1
+        self.counter += 1
         if self.counter == 100:
             self.counter = 0
 

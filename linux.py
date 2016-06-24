@@ -87,7 +87,7 @@ def update_system():
     # pycharm
     command = 'sudo add-apt-repository ppa:mystic-mirage/pycharm -y'
     os.system('echo %s|sudo -S %s' % (sudo_password, command))
-    command = ('sudo apt-get update')
+    command = 'sudo apt-get update'
     os.system('echo %s|sudo -S %s' % (sudo_password, command))
     command = 'sudo apt-get install pycharm-community -y'
     os.system('echo %s|sudo -S %s' % (sudo_password, command))

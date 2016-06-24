@@ -22,7 +22,6 @@ def main():
         # create 2d-list
         lst = []
         row = -1
-        column = 0
         n_articles = 0
         for line in text:
             if line[:2] == '##':
@@ -36,7 +35,6 @@ def main():
         # every article goes in one list-row
         for line in text:
             if line[:2] == '##':  # new article
-                column = 0
                 row += 1
             lst[row].append(line)
 

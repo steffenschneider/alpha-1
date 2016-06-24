@@ -45,6 +45,7 @@ __status__ = "Development"
 class MathProgram(tkinter.Tk):
     def __init__(self, parent):
         tkinter.Tk.__init__(self, parent)
+        self.labelVariable = tkinter.StringVar()
         self.parent = parent
         self.grid()
         self.geometry("400x400+300+150")  # field size
@@ -56,7 +57,6 @@ class MathProgram(tkinter.Tk):
         int_1, int_2, solution, wrong_solution, solution_position = self.create_problem()
 
         # text with the math question
-        self.labelVariable = tkinter.StringVar()
         label = tkinter.Label(self, textvariable=self.labelVariable,
                               anchor="center", fg="black", bg="yellow", text="Helvetica",
                               font=("Helvetica", 45))

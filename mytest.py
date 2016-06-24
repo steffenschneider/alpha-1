@@ -3,7 +3,7 @@ import unittest
 
 
 class MyTests(unittest.TestCase):
-    def test_one(self):
+    def test_one():
         print(111)
 
     def test_2(self):
