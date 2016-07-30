@@ -48,7 +48,8 @@ def main():
                 lst[i].append('')
 
         # sort articles - first tag - then name
-        outputlst = sorted(lst, key=lambda x: (x[1].lower(), x[0].lower()))
+        # outputlst = sorted(lst, key=lambda x: (x[1].lower(), x[0].lower()))
+        outputlst = sorted(lst, key=lambda x: (x[1].lower()))
 
         # write new file
         f = open(path, 'w')

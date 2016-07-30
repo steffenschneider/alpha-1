@@ -41,7 +41,7 @@ def main():
                 lst.append(mo.group()[1:-1])
 
     c = Counter(lst)
-    for letter, count in c.most_common(90):
+    for letter, count in c.most_common(111):
         print(str(letter) + (20 - len(letter)) * ' ' + '\t' + str(count))
 
 
