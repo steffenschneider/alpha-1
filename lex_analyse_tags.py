@@ -24,7 +24,7 @@ def main():
                'Latex', 'Linux', 'Literatur', 'Materialwissenschaften', 'Mathematik', 'Matlab',
                'Mechanik', 'Medien', 'Medizin', 'Messtechnik', 'Mikrocontroller',
                'MRT', 'Nico', 'Optik', 'Organisation', 'Persönlichkeit', 'Philosophie', 'PHP', 'Physik', 'Physiologie',
-               'Politik', 'privat', 'Programmieren', 'Programmieren-Vorgehensmodell',
+               'Politik', 'Programmieren', 'Programmieren-Vorgehensmodell',
                'Psychologie', 'Python', 'Quantenphysik', 'r', 'Raumfahrt',
                'Radar', 'Rechtschreibung', 'Regex', 'Religion', 'Rest', 'Robot',
                'Security', 'Selenium', 'Signalverarbeitung',

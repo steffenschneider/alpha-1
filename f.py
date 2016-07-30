@@ -124,6 +124,38 @@ def get_weekday():
     return result
 
 
+# open links #########################################################
+
+
+def open_dlf():
+    import webbrowser
+    url = "http://srv.deutschlandradio.de/themes/dradio/script/aod/index.html?audioMode=2&audioID=4&state="
+    new = 2  # open in a new tab, if possible
+    webbrowser.open(url, new=new)
+
+
+def open_hintergrund():
+    import webbrowser
+    url = "http://www.deutschlandfunk.de/podcast-hintergrund.725.de.podcast.xml"
+    new = 2  # open in a new tab, if possible
+    webbrowser.open(url, new=new)
+
+
+def open_cuk():
+    open_computer_und_kommunikation()
+
+
+def open_computer():
+    open_computer_und_kommunikation()
+
+
+def open_computer_und_kommunikation():
+    import webbrowser
+    url = "http://www.deutschlandfunk.de/podcast-computer-und-kommunikation-komplette-sendung.416.de.podcast.xml"
+    new = 2  # open in a new tab, if possible
+    webbrowser.open(url, new=new)
+
+
 ##################################################
 
 
@@ -352,36 +384,11 @@ def install_xlib():
     os.system('echo %s|sudo -S %s' % (sudo_password, command))
 
 
-# open links #########################################################
-
-
-def open_dlf():
-    import webbrowser
-    url = "http://srv.deutschlandradio.de/themes/dradio/script/aod/index.html?audioMode=2&audioID=4&state="
-    new = 2  # open in a new tab, if possible
-    webbrowser.open(url, new=new)
-
-
-def open_hintergrund():
-    import webbrowser
-    url = "http://www.deutschlandfunk.de/podcast-hintergrund.725.de.podcast.xml"
-    new = 2  # open in a new tab, if possible
-    webbrowser.open(url, new=new)
-
-
-def open_cuk():
-    open_computer_und_kommunikation()
-
-
-def open_computer():
-    open_computer_und_kommunikation()
-
-
-def open_computer_und_kommunikation():
-    import webbrowser
-    url = "http://www.deutschlandfunk.de/podcast-computer-und-kommunikation-komplette-sendung.416.de.podcast.xml"
-    new = 2  # open in a new tab, if possible
-    webbrowser.open(url, new=new)
+def percent(i: int, n: int) -> str:
+    result = i / n * 100.0
+    # print two digits after comma
+    result = format(result, '.2f')
+    return result
 
 
 if __name__ == "__main__":
