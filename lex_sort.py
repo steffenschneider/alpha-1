@@ -38,25 +38,33 @@ def main():
                 row += 1
             lst[row].append(line)
 
-        # todo - eventuell loeschen
-        for i in range(n_articles):
+        # ?
+        for j in range(n_articles):
             try:
-                if lst[i][0] == '\n':  # or lst[i][0] == '':
-                    lst[i].append('')
-            except:
-                lst[i].append('')  # important for sorting; cell must not be empty
-                lst[i].append('')
+                if lst[j][0] == '\n':  # or lst[j][0] == '':
+                    lst[j].append('')
+            except ValueError:
+                lst[j].append('')  # important for sorting; cell must not be empty
+                lst[j].append('')
+
+        # check list-entry-format
+        for k in range(n_articles):
+            # article name should start with two hash-signs
+            error_message_1 = "Article: " + str(lst[k][0])
+            assert lst[k][0][:2] == '##', error_message_1
+            # tag should stay in square brackets
+            error_message_2 = "Tag: " + str(lst[k][1])
+            assert lst[k][1][0] == '[', error_message_2
+            assert lst[k][1][-2] == ']', error_message_2
 
         # sort articles - first tag - then name
-        # outputlst = sorted(lst, key=lambda x: (x[1].lower(), x[0].lower()))
-        outputlst = sorted(lst, key=lambda x: (x[1].lower()))
+        outputlst = sorted(lst, key=lambda x: (x[1].lower(), x[0].lower()))
 
         # write new file
         f = open(path, 'w')
         for i in range(n_articles):
             for j in range(len(outputlst[i])):
                 f.write(outputlst[i][j])
-
 
 if __name__ == '__main__':
     main()

@@ -2,6 +2,7 @@
 
 import datetime
 import os
+import subprocess
 import sys
 import urllib
 from time import gmtime, strftime, localtime
@@ -154,6 +155,13 @@ def open_computer_und_kommunikation():
     url = "http://www.deutschlandfunk.de/podcast-computer-und-kommunikation-komplette-sendung.416.de.podcast.xml"
     new = 2  # open in a new tab, if possible
     webbrowser.open(url, new=new)
+
+
+# mouse handling ############################
+
+def get_mousepos():
+    curr = subprocess.check_output(["xdotool", "getmouselocation"]).decode("utf-8")
+    return [int(it.split(":")[1]) for it in curr.split()[:2]]
 
 
 ##################################################
