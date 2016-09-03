@@ -2,23 +2,29 @@ from subprocess import call
 
 import f
 
+"""
+Backlight-adjuster
+Change the display light according to the time.
+Works only on Linux.
+"""
+
 
 def main():
     minute_of_the_day = int(f.get_minute_of_the_day())
-    print(minute_of_the_day)
-    if minute_of_the_day < 400:
+    if minute_of_the_day < 9 * 60:
         call(["xbacklight", "-set", "7"])
-    if 400 < minute_of_the_day < 1100:
+    if 9 * 60 < minute_of_the_day < 19 * 60:
         call(["xbacklight", "-set", "90"])
-    if 1000 < minute_of_the_day < 1100:
+    if 19 * 60 < minute_of_the_day < 20 * 60:
         call(["xbacklight", "-set", "15"])
-    if 1100 <= minute_of_the_day < 1200:
+    if 20 * 60 <= minute_of_the_day < 21 * 60:
         call(["xbacklight", "-set", "10"])
-    if 1200 <= minute_of_the_day < 1300:
+    if 21 * 60 <= minute_of_the_day < 22 * 60:
         call(["xbacklight", "-set", "7"])
-    if 1300 <= minute_of_the_day < 1440:
+    if 22 * 60 <= minute_of_the_day < 23 * 60:
         call(["xbacklight", "-set", "4"])
-
+    if 23 * 60 <= minute_of_the_day < 24 * 60:
+        call(["xbacklight", "-set", "3"])
 
 if __name__ == '__main__':
     main()
