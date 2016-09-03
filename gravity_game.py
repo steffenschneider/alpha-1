@@ -7,7 +7,7 @@ __credits__ = ["Steffen Schneider"]
 __license__ = "GPLv3"
 __version__ = "0.1"
 __maintainer__ = "Steffen Schneider"
-__email__ = "nanosecond@web.de"
+__email__ = "nanosecond webde"
 __status__ = "Development"
 
 """
