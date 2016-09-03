@@ -399,6 +399,11 @@ def percent(i: int, n: int) -> str:
     return result
 
 
+def delete_chrome_history():
+    # SQLite3 database
+    # /home/kame/.config/chromium/Default/History
+    pass
+
 if __name__ == "__main__":
     cmd = str(sys.argv[1]) + "()"
     eval(cmd)

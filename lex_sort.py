@@ -11,7 +11,7 @@
 def main():
     # get content
     pathes = ["/home/kame/Dropbox/main-lex.txt",
-              # "/home/kame/Dropbox/diary.txt"
+              "/home/kame/Desktop/diary.txt"
               ]
 
     for path in pathes:
@@ -54,7 +54,7 @@ def main():
             assert lst[k][0][:2] == '##', error_message_1
             # tag should stay in square brackets
             error_message_2 = "Tag: " + str(lst[k][1])
-            assert lst[k][1][0] == '[', error_message_2
+            assert lst[k][1][0] == '[', str(error_message_1) + "  " + str(error_message_2)
             assert lst[k][1][-2] == ']', error_message_2
 
         # sort articles - first tag - then name

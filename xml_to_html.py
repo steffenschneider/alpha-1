@@ -38,7 +38,7 @@ def main():
         elements.append([])
 
         # first column: category
-        category = str(xml.xpath("//item[" + str(i + 1) + "]/category/text()")[0])
+        category = str(xml.xpath("//item[" + str(i + 1) + "]/category/text()")[0]).lower()
         elements[i].append(category)
 
         # second column: url
@@ -78,6 +78,14 @@ def main():
     # open html-file
     # new = 2  # open in a new tab, if possible
     # webbrowser.open(url, new=new)
+
+
+# nav {
+#     float: left;
+#     max-width: 160px;
+#     margin: 0;
+#     padding: 1em;
+# }
 
 
 if __name__ == '__main__':

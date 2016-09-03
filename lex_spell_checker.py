@@ -1,6 +1,6 @@
 # get content
 pathes = ["/home/kame/Dropbox/main-lex.txt",
-          "/home/kame/Dropbox/diary.txt"
+          "/home/kame/Desktop/diary.txt"
           ]
 
 for path in pathes:
