@@ -28,7 +28,7 @@ def copytree(src, dst, symlinks=False, ignore=None):
                 shutil.copy2(s, d)
                 print("Files copied with shutil.copy2")
         except RuntimeError:
-            print("No files copied!!!!!!!!!!")
+            print("No files copied!")
             pass
 
 
