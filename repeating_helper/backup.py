@@ -2,10 +2,6 @@
 import f
 
 
-# TODO - check for last date - copy from linux update
-# TODO - copy only if folder or file is changed
-
-
 def main():
     device_flag = 0
     for device in f.detect_devices():
@@ -32,9 +28,9 @@ def main():
             for item in os.listdir(src):
                 s = os.path.join(src, item)
                 d = os.path.join(dst, item)
-                # print(s)
 
                 # is source folder or file ?
+                folder_or_file = 0
                 if os.path.isdir(s):
                     folder_or_file = 10
                     # print("folder")
@@ -54,6 +50,7 @@ def main():
                     if os.stat(s).st_mtime - os.stat(d).st_mtime > 1:
                         shutil.rmtree(d)
                         shutil.copytree(s, d, symlinks, ignore)
+                        print(s)
                     else:
                         # print("++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++")
                         pass
@@ -63,16 +60,19 @@ def main():
                     if os.stat(s).st_mtime - os.stat(d).st_mtime > 1:
                         os.remove(d)
                         shutil.copy2(s, d)
+                        print(s)
                     else:
                         # print("+++++++++++++++++++++++++++++++++++++++++++++++++++++")
                         pass
 
                 if folder_or_file == 12:
                     shutil.copytree(s, d, symlinks, ignore)
+                    print(s)
 
                 # file
                 if folder_or_file == 22:
                     shutil.copy2(s, d)
+                    print(s)
 
         # Dropbox files
         print("copy Dropbox")
@@ -88,9 +88,6 @@ def main():
         # copytree(r"/home/kame/Desktop/main/mp3", "/media/kame/TOSHIBA EXT/Steffen/mp3")
         # print("copy wichtig")
         # copytree(r"/home/kame/Desktop/main/wichtig", "/media/kame/TOSHIBA EXT/Steffen/wichtig")
-
-    if device_flag == 0:
-        print("For backup an USB stick is needed")
 
 if __name__ == '__main__':
     main()

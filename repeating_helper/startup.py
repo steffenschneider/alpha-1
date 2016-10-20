@@ -12,5 +12,4 @@ lex_duplicates.main()
 lex_analyse_tags.main()
 backup.main()
 linux.update_system()
-
 print("SYSTEM IS CHECKED AND UPDATED")
