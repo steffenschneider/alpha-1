@@ -6,7 +6,7 @@ def main():
     # get content
     pathes = ["/home/kame/Dropbox/main-lex.txt",
               "/home/kame/Dropbox/main-lex-work.txt",
-              "/home/kame/Desktop/diary.txt"
+              "/home/kame/Desktop/main/diary.txt"
               ]
 
     for path in pathes:

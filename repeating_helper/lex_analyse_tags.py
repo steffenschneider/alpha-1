@@ -10,7 +10,7 @@ def main():
     import re
 
     # open file
-    pathes = ["/home/kame/Desktop/diary.txt",
+    pathes = ["/home/kame/Desktop/main/diary.txt",
               "/home/kame/Dropbox/main-lex.txt",
               "/home/kame/Dropbox/main-lex-work.txt"
               ]
