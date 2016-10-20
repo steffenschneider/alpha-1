@@ -11,7 +11,7 @@ def main():
 
     # open file
     pathes = ["/home/kame/Desktop/diary.txt",
-              "/home/kame/Dropbox/main-lex-work.txt",
+              "/home/kame/Dropbox/main-lex.txt",
               "/home/kame/Dropbox/main-lex-work.txt"
               ]
 
@@ -26,11 +26,11 @@ def main():
                    'Mechanik', 'Medien', 'Medizin', 'Messtechnik', 'Mikrocontroller',
                    'MRT', 'Netzwerktechnik', 'Nico', 'Optik', 'Organisation', 'Persönlichkeit', 'Philosophie', 'PHP',
                    'Physik', 'Physiologie',
-                   'Politik', 'Programmieren', 'Programmieren-Vorgehensmodell',
+                   'Politik', 'privat', 'Programmieren', 'Programmieren-Vorgehensmodell',
                    'Psychologie', 'Python', 'Quantenphysik', 'r', 'Raumfahrt',
                    'Radar', 'Rechtschreibung', 'Regex', 'Religion', 'Rest', 'Robot',
                    'Security', 'Selenium', 'Signalverarbeitung',
-                   'Software', 'Soziologie', 'SQL', 'Strahlenphysik', 'svn', 'Technik', 'Testing',
+                   'Software', 'Soziologie', 'SQL', 'Strahlenphysik', 'svn', 'Tagebuch', 'Technik', 'Testing',
                    'Testprogramm', 'Tier', 'todo', 'Umweltschutz', 'VB', 'vbnet', 'Verweis',
                    'Windows', 'Wirtschaft', 'Wissen', 'Wortschatz', 'WPF', 'XAML', 'XML', 'XNA', 'Zen']
 
@@ -51,7 +51,6 @@ def main():
                             'RMS': 'Testprogramm',
                             'Stochastik': 'Mathematik',
                             'Umwelt': 'Umweltschutz',
-                            'privat': 'move to diary',
                             'rms': 'r'
                             }
 
@@ -70,7 +69,7 @@ def main():
 
             # get tags two lines behind an empty line
             if found_empty == 4:
-                if re.search(r"\[.{0,40}\]", content[i]):
+                if re.search(r"^\[.{0,40}\]", content[i]):
                     found_empty = 0
                     mo = re.search(r"\[.{0,40}\]", content[i])
                     if mo.group()[1:-1] in taglist:
@@ -84,7 +83,7 @@ def main():
                         print(replacement_dict[key])
                     else:
                         # show new tags
-                        print("New tag found: " + str(mo.group()[1:-1]))
+                        print("New tag found in file --> " + str(path) + " --- " + str(mo.group()[1:-1]))
 
 
 if __name__ == '__main__':

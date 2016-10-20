@@ -25,10 +25,7 @@ if os.name == 'nt':  # Windows
 
 
 # todo
-# recognise unresolved references / missing modules
-# install missing modules
 # sort files within f-categories
-# find dropbox on every computer
 
 class Bcolors:
     red = '\033[91m'
@@ -191,13 +188,12 @@ def install_scapy():
 
 
 def install_xlib():
-    # todo
     if os.name == 'posix':
         sudo_password = input("sudo password: ")
         command = 'sudo -H pip install svn+https://svn.code.sf.net/p/python-xlib/code/trunk/'
         os.system('echo %s|sudo -S %s' % (sudo_password, command))
     else:
-        print("not implemented for windows yet")
+        raise Exception("not implemented for windows yet")
 
 
 def install_win32gui():
@@ -424,6 +420,18 @@ def random_string():
     print(z)
     print(re.sub("(..........)", "\\1\n", z))  # Breite entspricht Anzahl der Punkte
     return z
+
+
+# device-functions ########################################################
+
+
+def detect_devices():
+    import subprocess
+    df = subprocess.check_output("lsusb", shell=True)
+    devices = []
+    for i in df.decode('UTF-8').split('\n'):
+        devices.append(i)
+    return devices
 
 
 # file-functions ##########################################################
@@ -701,7 +709,6 @@ def is_file_available(path):
     return result
 
 
-# todo
 def is_root():
     if os.geteuid() == 0:
         print("True")
@@ -1352,7 +1359,8 @@ def analyse_element(self, xpath):
 def print_child_nodes(self, xpath):
     print(Bcolors.cyan + re.findall(r".*\\(.*)", inspect.stack()[0][1])[0] + " --- " + inspect.stack()[0][
         3] + "()" + Bcolors.ENDC)
-    # todo
+    raise Exception("Not fully implemented yet")
+
     print("Child nodes of xpath: " + Bcolors.blue + str(xpath) + Bcolors.ENDC)
     children = self._driver.find_elements_by_xpath(str(xpath) + '/*')
     for child in children:
