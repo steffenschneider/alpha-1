@@ -3,8 +3,9 @@
 This program shows you your reaction time
 """
 
-import time
 import random
+import time
+
 n_items = 4
 duration = 0
 

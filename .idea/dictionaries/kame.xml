@@ -13,12 +13,14 @@
       <w>abkürzung</w>
       <w>absdfk</w>
       <w>abwaschen</w>
+      <w>abzugshaube</w>
       <w>acti</w>
       <w>addr</w>
       <w>akku</w>
       <w>aktuell</w>
       <w>aleere</w>
       <w>alle</w>
+      <w>alles</w>
       <w>aluminiumfolie</w>
       <w>amarok</w>
       <w>ameisenbau</w>
@@ -51,6 +53,7 @@
       <w>aufgefuellt</w>
       <w>aufgefüllte</w>
       <w>aufkleber</w>
+      <w>aufladen</w>
       <w>aufprall</w>
       <w>aufräumen</w>
       <w>aufzufüllen</w>
@@ -75,6 +78,7 @@
       <w>bambus</w>
       <w>basteln</w>
       <w>batterie</w>
+      <w>batterien</w>
       <w>baukloetze</w>
       <w>baumes</w>
       <w>baumhaus</w>
@@ -82,7 +86,9 @@
       <w>bausteine</w>
       <w>bayern</w>
       <w>beamer</w>
+      <w>beantworten</w>
       <w>beenden</w>
+      <w>beepequivalent</w>
       <w>behinderung</w>
       <w>behoben</w>
       <w>beides</w>
@@ -183,11 +189,13 @@
       <w>durchdringen</w>
       <w>durchsichtigkeit</w>
       <w>dusche</w>
+      <w>duschen</w>
       <w>dürfen</w>
       <w>eanzahl</w>
       <w>eausgelassene</w>
       <w>ebene</w>
       <w>eerlaubte</w>
+      <w>eierkuchen</w>
       <w>eimer</w>
       <w>einbauen</w>
       <w>eine</w>
@@ -280,8 +288,11 @@
       <w>foto</w>
       <w>fotoalbum</w>
       <w>fouriertransformation</w>
+      <w>fout</w>
       <w>freies</w>
+      <w>freimachen</w>
       <w>frequenzgenerator</w>
+      <w>freunden</w>
       <w>frontera</w>
       <w>fuellzeichen</w>
       <w>fuers</w>
@@ -307,6 +318,7 @@
       <w>geographie</w>
       <w>geologie</w>
       <w>geschichte</w>
+      <w>geschirr</w>
       <w>geschriebenen</w>
       <w>geschwindigkeit</w>
       <w>gesetzt</w>
@@ -342,6 +354,7 @@
       <w>gummibärchen</w>
       <w>gummischleuder</w>
       <w>haar</w>
+      <w>haare</w>
       <w>habe</w>
       <w>haben</w>
       <w>haustier</w>
@@ -365,6 +378,7 @@
       <w>hoehle</w>
       <w>hoergeraet</w>
       <w>hohl</w>
+      <w>holen</w>
       <w>holz</w>
       <w>huelle</w>
       <w>hund</w>
@@ -397,6 +411,7 @@
       <w>kame</w>
       <w>kamo</w>
       <w>kandis</w>
+      <w>kann</w>
       <w>kanone</w>
       <w>kante</w>
       <w>kapsel</w>
@@ -491,6 +506,7 @@
       <w>lleere</w>
       <w>lloesungswort</w>
       <w>lmms</w>
+      <w>localappdata</w>
       <w>loeffel</w>
       <w>loeschen</w>
       <w>loesungswort</w>
@@ -528,6 +544,7 @@
       <w>mehr</w>
       <w>mehrere</w>
       <w>mehrzahl</w>
+      <w>mein</w>
       <w>melone</w>
       <w>menge</w>
       <w>messer</w>
@@ -548,6 +565,7 @@
       <w>mouseclick</w>
       <w>mousemove</w>
       <w>mousepad</w>
+      <w>mousepos</w>
       <w>mscorefonts</w>
       <w>muedigkeit</w>
       <w>muell</w>
@@ -683,6 +701,7 @@
       <w>rolle</w>
       <w>rollen</w>
       <w>rosegarden</w>
+      <w>rotronic</w>
       <w>rueck</w>
       <w>rumpfbeugen</w>
       <w>rutsche</w>
@@ -712,6 +731,7 @@
       <w>schnecke</w>
       <w>schnee</w>
       <w>schnei</w>
+      <w>schneiden</w>
       <w>schnur</w>
       <w>schokocreme</w>
       <w>schraube</w>
@@ -830,6 +850,7 @@
       <w>sympy</w>
       <w>systematik</w>
       <w>sägen</w>
+      <w>tabletten</w>
       <w>tafelfarbe</w>
       <w>taglist</w>
       <w>tamagochi</w>
@@ -881,6 +902,7 @@
       <w>vecx</w>
       <w>vecy</w>
       <w>vektor</w>
+      <w>verabreden</w>
       <w>verband</w>
       <w>verbraucher</w>
       <w>verfall</w>
@@ -915,6 +937,7 @@
       <w>villingen</w>
       <w>virtualbox</w>
       <w>virtueller</w>
+      <w>vokabeln</w>
       <w>voll</w>
       <w>vorgehensmodell</w>
       <w>vorhanden</w>
@@ -926,11 +949,15 @@
       <w>waage</w>
       <w>waffel</w>
       <w>wandel</w>
+      <w>wandern</w>
+      <w>waschen</w>
       <w>waschsalon</w>
       <w>wasser</w>
       <w>wasserrad</w>
       <w>webbrowser</w>
       <w>wecker</w>
+      <w>wegbringen</w>
+      <w>wegräumen</w>
       <w>weiter</w>
       <w>weitere</w>
       <w>welche</w>
@@ -1000,6 +1027,7 @@
       <w>zellen</w>
       <w>ziehen</w>
       <w>ziffer</w>
+      <w>zimmer</w>
       <w>zitteraal</w>
       <w>zsuppe</w>
       <w>zucker</w>

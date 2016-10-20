@@ -11,11 +11,12 @@
 def main():
     # get content
     pathes = ["/home/kame/Dropbox/main-lex.txt",
-              "/home/kame/Desktop/diary.txt"
+              "/home/kame/Dropbox/main-lex-work.txt",
+              "/home/kame/Desktop/diary.txt",
               ]
 
     for path in pathes:
-        print(path)
+        # print(path)
         file_input = open(path, "r")
         text = file_input.readlines()  # .read() read only one line
 
@@ -27,7 +28,7 @@ def main():
             if line[:2] == '##':
                 n_articles += 1
 
-        print("number of articles: " + str(n_articles))
+        # print("number of articles: " + str(n_articles))
 
         for i in range(n_articles):
             lst.append([])

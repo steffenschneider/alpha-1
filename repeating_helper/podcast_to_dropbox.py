@@ -14,13 +14,14 @@ Before delete the old files in this folder.   todo
 def get_podcasts():
     # print(sys.version_info)
     import collections
-    import mydata
+    from mydata import podcasts
     import requests
     import re
     import f
     import urllib.request
+
     # retrieve podcast data
-    podcast_links_dict = mydata.podcast_links_dict
+    podcast_links_dict = podcasts.podcast_links_dict
 
     # sort dict
     podcast_links_dict_ordered = collections.OrderedDict(sorted(podcast_links_dict.items()))
@@ -41,7 +42,9 @@ def get_podcasts():
                 print(items[0].split('\"')[0])
                 mp3_url = items[0].split('\"')[0]
                 # mp3_url = "http://podcast-mp3.dradio.de/podcast/2016/03/12/dlf_20160312_1630_83264bea.mp3"
+
                 path = "/home/kame/Dropbox/new_podcasts/"
+                f.create_dir_if_not_exists(path)
                 filetype = ".mp3"
 
                 # download file if not downloaded yet

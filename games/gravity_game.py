@@ -1,3 +1,25 @@
+#!/usr/bin/env python3
+# coding: utf-8
+
+__author__ = "Steffen Schneider"
+__copyright__ = "..."
+__credits__ = ["Steffen Schneider"]
+__license__ = "GPLv3"
+__version__ = "0.1"
+__maintainer__ = "Steffen Schneider"
+__email__ = "nanosecond webde"
+__status__ = "Development"
+
+"""
+Balls in a TKinter-GUI moving downwards because of gravity.
+This is an interactive games
+
+TODO
+- move circle according to gravity laws
+- add obstacle were objects are bounce
+"""
+
+import time
 from tkinter import SUNKEN, Tk, Canvas, Frame
 
 
@@ -35,16 +57,14 @@ class Ball:
 root = Tk()
 root.title("Blobs")
 root.resizable(0, 0)
-frame = Frame(root, bd=15, relief=SUNKEN)
+frame = Frame(root, bd=10, relief=SUNKEN)
 frame.pack()
 canvas = Canvas(frame, width=500, height=300, bd=0, highlightthickness=0)
 canvas.pack()
-speed = 0.02
-dy = 20
+speed = 0.0003
+dy = 1
 items = [
-    Ball(canvas, (0, 10), "red", 0.201, 0.020),
-    Ball(canvas, (0, 21), "yellow", 0.20, 0.025),
-    Ball(canvas, (0, 32), "green", 0.2013, 0.03)
+    Ball(canvas, (0, 10), "red", 0.101, 0.020)
 ]
 
 root.update()  # fix geometry
@@ -55,6 +75,7 @@ try:
         for i in range(len(items)):
             items[i] = items[i]()
             root.update_idletasks()  # redraw
+            time.sleep(.001)
         root.update()  # process events
 except:
     pass  # to avoid errors when the window is closed

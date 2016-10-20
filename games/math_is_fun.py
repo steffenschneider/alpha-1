@@ -26,15 +26,15 @@ PLAN:
 -- PASS or FAIL is shown
 -- the score is update
 -- after 5 secs a new question is shown
-- the game finishes after 10-15 questions
+- the games finishes after 10-15 questions
 
 CHANGELOG:
 - 30.04.16 first working solution
 """
 
-__author__ = "Steffen Schneider, Erik Streb (?)"
+__author__ = "Steffen Schneider"
 __copyright__ = "..."
-__credits__ = ["Steffen Schneider, Erik Streb"]
+__credits__ = ["Steffen Schneider"]
 __license__ = "GPL"
 __version__ = "0.5.1"
 __maintainer__ = "Steffen Schneider"

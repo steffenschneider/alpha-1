@@ -32,6 +32,8 @@ def copytree(src, dst, symlinks=False, ignore=None):
             pass
 
 
+input("Insert USB and press Enter:")
+
 # Dropbox files
 print("copy Dropbox")
 copytree("/home/kame/Dropbox", "/media/kame/TOSHIBA EXT/Steffen/Dropbox")
@@ -42,6 +44,6 @@ copytree(r"/home/kame/Desktop/main", "/media/kame/TOSHIBA EXT/Steffen/main")
 # print("copy bilder")
 # copytree(r"/home/kame/Desktop/main/bilder", "/media/kame/TOSHIBA EXT/Steffen/bilder")
 # print("copy mp3")
-# copytree(r"/home/kame/Desktop/main/bilder", "/media/kame/TOSHIBA EXT/Steffen/mp3")
+# copytree(r"/home/kame/Desktop/main/mp3", "/media/kame/TOSHIBA EXT/Steffen/mp3")
 # print("copy wichtig")
 # copytree(r"/home/kame/Desktop/main/wichtig", "/media/kame/TOSHIBA EXT/Steffen/wichtig")
