@@ -795,6 +795,12 @@ def sound_beepequivalent_under_linux():
 # text-manipulation #####################################
 
 
+def file_count_lines(path):
+    with open(path, 'r') as fin:
+        a = fin.readlines()
+    return len(a)
+
+
 def file_delete_empty_lines(file_in):
     with open(file_in, 'r') as fin:
         data = ("".join(line for line in fin if not line.isspace()))
@@ -820,6 +826,15 @@ def file_delete_lines_with_entry(file_in, entry):
             f.write(i)
     f.truncate()
     f.close()
+
+
+def file_get_last_line(file_):
+    myarr = []
+    file_input = open(file_)
+    text = file_input.readlines()  # .read() reads only one line
+    for line in text:
+        myarr.append(line)
+    return myarr[-1:][0][:-1]
 
 
 def file_insert_line(file_in, index, value):
@@ -961,24 +976,34 @@ def mod():
 
 def percent_of_the_day():
     result = 100 * float(get_mod()) / 1440.0
-    resutl = two_digits_after_point(result)  # fixme ! five digits are shown here. :/
+    result = two_digits_after_point(result)
     return result
 
 
+def time_diff(start_time, end_time):
+    from datetime import datetime
+    datetime_format = '%d.%m.%Y %H:%M:%S'
+    et = datetime.strptime(end_time, datetime_format)
+    st = datetime.strptime(start_time, datetime_format)
+    dt = et - st
+    print(dt.days)
+    print(dt.seconds)
+    return dt
+
+
 def time_diff_in_seconds(start_time, end_time):
-    start_hour = int(start_time[0:2])
-    end_hour = int(end_time[0:2])
-    start_min = int(start_time[3:5])
-    end_min = int(end_time[3:5])
-    start_sec = int(start_time[6:8])
-    end_sec = int(end_time[6:8])
-    diff = (end_hour - start_hour) * 3600 + (end_min - start_min) * 60 + (end_sec - start_sec)
-    return diff
+    from datetime import datetime
+    datetime_format = '%d.%m.%Y %H:%M:%S'
+    et = datetime.strptime(end_time, datetime_format)
+    st = datetime.strptime(start_time, datetime_format)
+    dt = et - st
+    result = 24 * 3600 * dt.days + dt.seconds
+    return result
 
 
 def time_now_to_seconds():
-    timenow = get_local_time()
-    time_in_seconds = time_to_seconds(timenow)
+    time_now = get_local_time()
+    time_in_seconds = time_to_seconds(time_now)
     result = time_in_seconds
     return result
 
