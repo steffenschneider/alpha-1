@@ -58,11 +58,19 @@ class Pathes:
     # dropbox_path = "C:/users/steffen.schneider/Dropbox/code/python/scripts/f.py"
 
 
-# check+install-functions #########################################################
-# see also search-functions
+##################################################################################################
+##################################################################################################
+##################################################################################################
+##################################################################################################
+##################################################################################################
+
 
 def battery():
     get_battery_status_in_percent()
+
+
+def check_if_odd(n):
+    return n % 2 == 1
 
 
 def check_if_root():
@@ -88,7 +96,6 @@ def check_wlan():
         return False
 
 
-# new
 def count_functions_in_fpy():
     import re
     dropbox_path = get_dropbox_home()
@@ -253,21 +260,16 @@ def system_info():
     count_functions_in_fpy()
 
 
-# clean-functions #########################################################
-
-
 def delete_chrome_history():
     # SQLite3 database
     # /home/kame/.config/chromium/Default/History
     raise Exception("Not implemented yet")
 
 
-# convert-functions #######################################################
-
-
 def binary_to_string(binary_string):
     result = binary_string.decode('UTF-8')
     return result
+
 
 def html_to_pdf(input_file, output_file):
     print(Bcolors.cyan + re.findall(r".*\\(.*)", inspect.stack()[0][1])[0] + " --- " + inspect.stack()[0][
@@ -389,9 +391,6 @@ def rgbint_to_rgbtuple(rgbint):
     return red, green, blue
 
 
-# create-functions ########################################################
-
-
 def random_string():
     list_ = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9,
              'a', 'b', 'c', 'd', 'e', 'f', 'g',
@@ -417,9 +416,6 @@ def random_string():
     return z
 
 
-# device-functions ########################################################
-
-
 def detect_devices():
     import subprocess
     df = subprocess.check_output("lsusb", shell=True)
@@ -429,25 +425,15 @@ def detect_devices():
     return devices
 
 
-# file-functions ##########################################################
-
-# siehe auch text-manipulation
-
 def get_filenames_from_dir(path):
     import glob
     path += "*.mp3"
     return glob.glob(path)
 
 
-# format-functions ########################################################
-
-
 def two_digits_after_point(value):
     result = format(value, '.2f')
     return result
-
-
-# html-functions ##########################################################
 
 
 def get_id_tags(url):
@@ -495,18 +481,12 @@ def get_links(url):
     return lst
 
 
-# linux-functions #########################################################
-
-
 def upgrade_linux():
     sudo_password = input("sudo password: ")
     command = 'apt-get update'
     os.system('echo %s|sudo -S %s' % (sudo_password, command))
     command = 'apt-get upgrade -y'  # -y for typing yes
     os.system('echo %s|sudo -S %s' % (sudo_password, command))
-
-
-# media-functions #########################################################
 
 
 def download_mp3_to_dropbox(url):
@@ -556,10 +536,6 @@ def open_computer_und_kommunikation():
     webbrowser.open(url, new=new)
 
 
-def open_cuk():
-    open_computer_und_kommunikation()
-
-
 def open_dlf():
     import webbrowser
     url = "http://srv.deutschlandradio.de/themes/dradio/script/aod/index.html?audioMode=2&audioID=4&state="
@@ -572,9 +548,6 @@ def open_hintergrund():
     url = "http://www.deutschlandfunk.de/podcast-hintergrund.725.de.podcast.xml"
     new = 2  # open in a new tab, if possible
     webbrowser.open(url, new=new)
-
-
-# mouse-functions ############################
 
 
 def click():
@@ -614,9 +587,6 @@ def watch_position():
     # os.system("xdotool getmouselocation 2>/dev/null | cut -d\  -f1,2 -")
 
 
-# network-functions #######################################################
-
-
 def my_ip():
     get_my_ip()
 
@@ -639,9 +609,6 @@ def get_my_ip():
         # s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
         # s.connect(("8.8.8.8", 80))
         # return s.getsockname()[0]
-
-
-# os-functions ############################################################
 
 
 def change_dir(path):
@@ -710,10 +677,7 @@ def is_root():
         return False
 
 
-# rotronic-functions ####################################
-
-
-def analyse_sync():
+def rotronic_analyse_sync():
     file_ = r"E:\ME\Gemeinsame_Daten\10000.Project\11045.Projekt w konzept\35_Validation\Systemtest\log_files\putty.txt"
     file_input = open(file_, "r")
     text = file_input.readlines()
@@ -726,9 +690,6 @@ def analyse_sync():
             number = re.findall(pattern_1, string)[0]
             time_ = re.findall(pattern_2, string)[0]
             print(str(number) + "\t" + str(time_))
-
-
-# search-functions ######################################
 
 
 def get_dropbox_home():
@@ -771,9 +732,6 @@ def search_file_in_path_and_subfolders(filename, path):
                 print(os.path.join(root, file))
 
 
-# sound-functions #######################################
-
-
 def play_sound_under_windows():
     freq = 444
     dur = 111
@@ -789,9 +747,6 @@ def play_sound_under_windows():
 def sound_beepequivalent_under_linux():
     import subprocess
     subprocess.call(['/usr/bin/canberra-gtk-play', '--id', 'bell'])
-
-
-# text-manipulation #####################################
 
 
 def file_count_lines(path):
@@ -880,9 +835,6 @@ def file_to_list(path):
     with open(path) as f:
         contents = f.readlines()
     return contents
-
-
-# time-functions ########################################
 
 
 def datetime_to_seconds(mydate):
@@ -1042,44 +994,6 @@ def utc_to_localtime(timestring):
     return result[:-3]
 
 
-##################################################
-##################################################
-##################################################
-##################################################
-##################################################
-
-##################################################
-##################################################
-##################################################
-##################################################
-
-##################################################
-##################################################
-##################################################
-##################################################
-
-##################################################
-##################################################
-##################################################
-##################################################
-
-##################################################
-##################################################
-##################################################
-##################################################
-
-##################################################
-##################################################
-##################################################
-##################################################
-
-##################################################
-##################################################
-##################################################
-##################################################
-
-# file-functions ####################################################################
-
 def search_all_files_for_string(mystring):
     import glob
     path = r"C:\Users\steffen.schneider\Desktop\RMS\**"
@@ -1126,9 +1040,6 @@ def show_all_functions_in_folder(path):
                         counter += 1
             except:
                 pass
-
-
-###################################################################################
 
 
 def textbox(msg):
@@ -1465,6 +1376,13 @@ def random_string_2(n):
     result = ''.join(random.SystemRandom().choice(string.ascii_letters + string.digits) for _ in range(n))
     print(result)
     return result
+
+
+##################################################################################################
+##################################################################################################
+##################################################################################################
+##################################################################################################
+##################################################################################################
 
 
 if __name__ == '__main__':

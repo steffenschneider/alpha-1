@@ -99,6 +99,7 @@
       <w>beliebiges</w>
       <w>bereits</w>
       <w>beschaedigung</w>
+      <w>besser</w>
       <w>bestellung</w>
       <w>beton</w>
       <w>bett</w>
@@ -193,6 +194,7 @@
       <w>duschen</w>
       <w>dürfen</w>
       <w>eanzahl</w>
+      <w>easygui</w>
       <w>eausgelassene</w>
       <w>ebene</w>
       <w>eerlaubte</w>
@@ -663,8 +665,10 @@
       <w>pyhton</w>
       <w>pymouse</w>
       <w>pymysql</w>
+      <w>pypi</w>
       <w>pyramdidenform</w>
       <w>pyramide</w>
+      <w>pytest</w>
       <w>pyvirtualdisplay</w>
       <w>quadrat</w>
       <w>quantenphysik</w>
@@ -713,6 +717,7 @@
       <w>salz</w>
       <w>scangroesse</w>
       <w>scannummer</w>
+      <w>scapy</w>
       <w>schachbrett</w>
       <w>schafsherde</w>
       <w>schall</w>
@@ -987,6 +992,7 @@
       <w>wireshark</w>
       <w>wirtschaft</w>
       <w>wissen</w>
+      <w>wkhtmltopdf</w>
       <w>wlan</w>
       <w>wochenende</w>
       <w>woertern</w>

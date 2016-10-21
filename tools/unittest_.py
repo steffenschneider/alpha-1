@@ -1,16 +1,13 @@
+import math
 import unittest
 
 import f
 
 
-def is_odd(n):
-    return n % 2 == 1
-
-
 class MyTests(unittest.TestCase):
-    def test_is_odd(self):
-        self.failUnless(is_odd(1))
-        self.failIf(is_odd(2))
+    def test_check_if_odd(self):
+        self.failUnless(f.check_if_odd(1))
+        self.failIf(f.check_if_odd(2))
 
     def test_f_is_some_number(self):
         self.failIf(f.is_some_number("öaksdjf"))
@@ -25,6 +22,10 @@ class MyTests(unittest.TestCase):
         self.failUnless(f.is_some_number("22.6"))
         self.failUnless(f.is_some_number("22,6"))
         self.failUnless(f.is_some_number("-22,6"))
+        assert f.is_some_number("8") == True
+        assert f.is_some_number("dddasdf") == False
+        assert f.is_some_number("ddd322a2s2d1f") == False
+        assert f.is_some_number(math.pi)
 
 
 def main():
