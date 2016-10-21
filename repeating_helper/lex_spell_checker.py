@@ -9,13 +9,15 @@ def main():
         file_input = open(path, "r")
         text = file_input.readlines()  # .read() read only one line
 
-        lst_wrong = ['garnicht', 'Pyhton', 'daselbe', 'werdne', 'Addresse']
+        lst_wrong = ['garnicht', 'Pyhton', 'daselbe', 'werdne', 'Addresse',
+                     'geschaft']
 
         for item in lst_wrong:
             for line in text:
                 if item in line:
+                    print("spelling mistake found")
+                    print(path)
                     print(item, line)
-
 
 if __name__ == '__main__':
     main()

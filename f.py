@@ -142,6 +142,12 @@ def get_installed_modules():
     return installed_packages_list
 
 
+def get_mac():
+    from uuid import getnode as get_mac
+    mac = get_mac()
+    return mac
+
+
 def get_temperature():
     from pyvirtualdisplay import Display
 
