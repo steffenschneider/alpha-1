@@ -3,6 +3,7 @@
 from f import get_battery_status_in_percent, check_wlan, check_sleeping_time
 from repeating_helper import lex_sort, remove_pyc, linux, backlight_dependent_on_time
 from repeating_helper import lex_spell_checker, lex_duplicates, wortschatz, lex_analyse_tags, backup
+from repeating_helper import pip_updater
 
 
 def main():
@@ -18,6 +19,7 @@ def main():
     lex_analyse_tags.main()
     backup.main()
     linux.update_system()
+    pip_updater.main()
     print("SYSTEM IS CHECKED AND UPDATED")
 
 

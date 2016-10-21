@@ -1,7 +1,4 @@
-import math
-import time
-
-from visual import *
+from vpython import *
 
 ball1 = sphere()
 ball1.color = (1, .5, 0)

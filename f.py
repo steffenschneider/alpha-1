@@ -213,13 +213,13 @@ def install_win32gui():
 
 
 def is_some_number(mystring):
-    print(Bcolors.cyan + re.findall(r".*\\(.*)", inspect.stack()[0][1])[0] + " --- " + inspect.stack()[0][
-        3] + "()" + Bcolors.ENDC)
+    # print(Bcolors.cyan + re.findall(r".*\\(.*)", inspect.stack()[0][1])[0] + " --- " + inspect.stack()[0][3] + "()" + Bcolors.ENDC)
     """
     Is mystring int of float (with . or , separator)?
-    :param mystring:
+    :param mystring: int or str
     :return: bool
     """
+    mystring = str(mystring)
     mystring = re.sub(",", ".", mystring)
     try:
         if float(mystring):
@@ -266,24 +266,8 @@ def delete_chrome_history():
 
 
 def binary_to_string(binary_string):
-    result = binary_string.decode('ascii')
+    result = binary_string.decode('UTF-8')
     return result
-
-
-def file_to_list(path):
-    with open(path) as f:
-        contents = f.readlines()
-    return contents
-
-
-def file_to_string(path):
-    mystring = ""
-    with open(path) as f:
-        contents = f.readlines()
-    for elem in contents:
-        mystring += str(elem)
-    return mystring
-
 
 def html_to_pdf(input_file, output_file):
     print(Bcolors.cyan + re.findall(r".*\\(.*)", inspect.stack()[0][1])[0] + " --- " + inspect.stack()[0][
@@ -447,6 +431,7 @@ def detect_devices():
 
 # file-functions ##########################################################
 
+# siehe auch text-manipulation
 
 def get_filenames_from_dir(path):
     import glob
@@ -851,6 +836,24 @@ def file_get_last_line(file_):
     return myarr[-1:][0][:-1]
 
 
+def file_get_string(path):
+    mystring = ""
+    with open(path) as f:
+        contents = f.readlines()
+    for elem in contents:
+        mystring += str(elem)
+    return mystring
+
+
+def file_get_text_from_file(path):
+    myarr = []
+    file_input = open(path)
+    text = file_input.readlines()  # .read() reads only one line
+    for line in text:
+        myarr.append(line)
+    return myarr
+
+
 def file_insert_line(file_in, index, value):
     f = open(file_in, "r")
     contents = f.readlines()
@@ -873,13 +876,10 @@ def file_replace_words(file_in, word_to_replace, replace_with):
     f.close()
 
 
-def get_text_from_file(file_):
-    myarr = []
-    file_input = open(file_)
-    text = file_input.readlines()  # .read() reads only one line
-    for line in text:
-        myarr.append(line)
-    return myarr
+def file_to_list(path):
+    with open(path) as f:
+        contents = f.readlines()
+    return contents
 
 
 # time-functions ########################################
@@ -887,17 +887,17 @@ def get_text_from_file(file_):
 
 def datetime_to_seconds(mydate):
     result = re.match(r"\d\d\.\d\d\.\d\d\d\d \d\d:\d\d:\d\d", mydate)
-    if result != None:
+    if result is not None:
         d = datetime.strptime(mydate, "%d.%m.%Y %H:%M:%S")
         result = time.mktime(d.timetuple())
         return result
     result = re.match(r"\d\d\d\d-\d\d-\d\d \d\d:\d\d:\d\d.\d\d\d", mydate)
-    if result != None:
+    if result is not None:
         d = datetime.strptime(mydate, "%Y-%m-%d %H:%M:%S.%f")
         result = time.mktime(d.timetuple())
         return result
     result = re.match(r"\d\d\d\d-\d\d-\d\d \d\d:\d\d:\d\d", mydate)
-    if result != None:
+    if result is not None:
         d = datetime.strptime(mydate, "%Y-%m-%d %H:%M:%S")
         result = time.mktime(d.timetuple())
         return result

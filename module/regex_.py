@@ -11,12 +11,8 @@ string = "<title><![CDATA[Coronation Street star Jean Alexander dies aged 90]]><
 # else:
 #     print("not found")
 
-result = re.findall(r"<title><!\[CDATA\[(.*?\]\])</title>", string)
+result = re.findall(r"(.*)</title>", string)
 print(result)
-
-pattern = r"(123)"
-match = re.match(pattern, string)
-print(match.group(1))
 
 # result = re.sub(r"]]", "", string)
 # print(result)

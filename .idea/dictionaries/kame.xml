@@ -34,6 +34,7 @@
       <w>antenne</w>
       <w>anweisung</w>
       <w>anzahl</w>
+      <w>appdata</w>
       <w>aquaedukt</w>
       <w>aquedukt</w>
       <w>arbeit</w>
@@ -582,6 +583,7 @@
       <w>myip</w>
       <w>mylinks</w>
       <w>mypaint</w>
+      <w>mystring</w>
       <w>möglich</w>
       <w>mülleimer</w>
       <w>münchen</w>
@@ -832,6 +834,7 @@
       <w>strubbi</w>
       <w>stöpsel</w>
       <w>stück</w>
+      <w>subfolders</w>
       <w>substr</w>
       <w>substrings</w>
       <w>suche</w>

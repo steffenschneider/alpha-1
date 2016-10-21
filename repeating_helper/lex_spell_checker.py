@@ -10,7 +10,7 @@ def main():
         text = file_input.readlines()  # .read() read only one line
 
         lst_wrong = ['garnicht', 'Pyhton', 'daselbe', 'werdne', 'Addresse',
-                     'geschaft']
+                     'geschaft', 'Fuss']
 
         for item in lst_wrong:
             for line in text:
