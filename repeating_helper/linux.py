@@ -8,7 +8,7 @@ import f
 def update_system():
     path = "/home/kame/Dropbox/data/linux_update_date.txt"
     start_time = f.file_get_last_line(path)
-    if f.time_diff_in_seconds(start_time, f.get_datetime()) > 3 * 3600:
+    if f.time_diff_in_seconds(start_time, f.get_datetime()) > 3 * 24 * 3600:
         # append date to log-file
         f.file_insert_line(path, f.file_count_lines(path), f.get_datetime() + "\n")
 

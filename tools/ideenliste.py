@@ -82,7 +82,7 @@ def sort_case_insensitive(lst_a):
     return lst_b
 
 
-def line_break(lst_a):
+def line_break_in_list(lst_a):
     size = 0
     buffer_string = "    "
     print("lst = [")
@@ -105,4 +105,4 @@ def line_break(lst_a):
 
 a = remove_doppelgaenger(lst)
 b = sort_case_insensitive(a)
-line_break(b)
+line_break_in_list(b)

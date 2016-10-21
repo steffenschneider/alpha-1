@@ -72,11 +72,16 @@ def check_if_root():
         return False
 
 
+def check_sleeping_time():
+    hour = int(strftime("%H", localtime()))
+    if hour > 22:
+        print("It's late! Shut down your computer!!!!!")
+
+
 def check_wlan():
     url = "http://www.google.de"
     try:
         if urllib.request.urlretrieve(url, "/home/kame/test.txt"):
-            print("Connected to the internet")
             return True
     except ConnectionError:
         print("Not connected to the internet!!!")
@@ -116,7 +121,7 @@ def get_battery_status_in_percent():
 
     result = 100.0 * int(now_) / int(full_)
     result = str("{0:.1f}".format(result))
-    print("battery: " + result + " %")
+    # print("battery: " + result + " %")
     if float(result) < 20.0:
         print("###########################################")
         print("###########################################")
@@ -496,7 +501,6 @@ def get_links(url):
         if lst[i][:4] != 'http':
             lst[i] = url + str(lst[i][1:])
 
-    print(lst)
     return lst
 
 
@@ -695,7 +699,6 @@ def get_script_path():
 def is_dir_available(path):
     import os
     result = os.path.isdir(path)
-    print(result)
     return result
 
 
@@ -711,10 +714,8 @@ def is_file_available(path):
 
 def is_root():
     if os.geteuid() == 0:
-        print("True")
         return True
     else:
-        print("False")
         return False
 
 
