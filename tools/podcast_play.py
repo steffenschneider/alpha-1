@@ -12,9 +12,9 @@ import webbrowser
 
 import requests
 
-import mydata
+from mydata import podcasts
 
-podcast_links_dict = mydata.podcast_links_dict
+podcast_links_dict = podcasts.podcast_links_dict
 
 # sort dict
 podcast_links_dict_ordered = collections.OrderedDict(sorted(podcast_links_dict.items()))

@@ -8,13 +8,14 @@ Sort files dependent of the category.
 An '&' in an url doesn't work because of the xml-file.
 """
 
-from lxml import etree
+# from lxml import etree
+import xml.etree.ElementTree as ET
 
 
 def main():
     # get content from xml
     xmlpath = "/home/kame/Dropbox/data/links.xml"
-    xml = etree.parse(xmlpath)
+    xml = ET.parse(xmlpath)
     # print(etree.tostring(xml))
 
     # todo - sort for category

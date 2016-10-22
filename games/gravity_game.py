@@ -24,8 +24,8 @@ TODO
 
 
 class Ball:
-    def __init__(self, canvas, xy, ink, vecx, vecy):
-        self.canvas = canvas
+    def __init__(self, canvas_, xy, ink, vecx, vecy):
+        self.canvas = canvas_
         self.id = self.canvas.create_oval(5, 5, 15, 15, fill=ink)
         self.canvas.move(self.id, xy[0], xy[1])
         if vecx > 0:

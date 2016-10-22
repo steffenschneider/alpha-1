@@ -7,7 +7,8 @@ Often used function for extracting data from a XML-file.
 This file is not ready yet.
 """
 
-from lxml import etree
+# from lxml import etree
+import xml.etree.ElementTree as ET
 
 
 def parse_xml(topic):
@@ -18,25 +19,25 @@ def parse_xml(topic):
         xmlpath = "/home/kame/Dropbox/data/music.xml"
     else:
         print("Error: topic not found")
-    xml = etree.parse(xmlpath)
-    return xml
+    xml_ = ET.parse(xmlpath)
+    return xml_
 
 
-def print_whole_xml(xml):
-    print(etree.tostring(xml))
+def print_whole_xml(xml_):
+    print(ET.tostring(xml_))
 
 
-def count_items(xml):
-    n_items = len(xml.xpath("//item"))
+def count_items(xpath):
+    n_items = len(xml.xpath(xpath))
     print(str(n_items) + " items")
     return n_items
 
 
-def item_attributes(xml):
+def item_attributes(xml_):
     # show attributes between the item tag
     import re
     # print(etree.tostring(xml))
-    lst = re.findall(r'<\/?(.*?)\/?>', etree.tostring(xml))
+    lst = re.findall(r'<\/?(.*?)\/?>', ET.tostring(xml_))
     # print(lst)
 
     # count all tags

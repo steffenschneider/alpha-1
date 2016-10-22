@@ -77,6 +77,7 @@ class MathProgram(tkinter.Tk):
                                  fg="black", bg="yellow", activebackground="yellow")
         button3.place(relx=0.75, rely=0.5, anchor=tkinter.CENTER)
 
+    # noinspection PyMethodMayBeStatic
     def create_problem(self):
         int_1 = random.randint(0, 6)
         int_2 = random.randint(0, 6)

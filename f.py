@@ -438,8 +438,8 @@ def get_local_time():
 
 
 def get_mac():
-    from uuid import getnode as get_mac
-    mac = get_mac()
+    from uuid import getnode as get_mac_
+    mac = get_mac_()
     return mac
 
 
@@ -1063,9 +1063,9 @@ def rotronic_analyse_sync():
     pattern_2 = r"Sync: (.*)"
     for line in text:
         if 'Sync' in line:
-            string = line[:-1]
-            number = re.findall(pattern_1, string)[0]
-            time_ = re.findall(pattern_2, string)[0]
+            string_ = line[:-1]
+            number = re.findall(pattern_1, string_)[0]
+            time_ = re.findall(pattern_2, string_)[0]
             print(str(number) + "\t" + str(time_))
 
 
