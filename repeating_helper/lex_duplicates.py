@@ -1,5 +1,6 @@
 # csharp script also works
-# os.system("wine /home/kame/Dropbox/code/csharp/monodevelop/lex-duplicates/lex-duplicates/bin/Debug/lex-duplicates.exe")
+# os.system("wine /home/kame/Dropbox/code/csharp/monodevelop/lex-duplicates/" +
+#  "lex-duplicates/bin/Debug/lex-duplicates.exe")
 
 
 def main():

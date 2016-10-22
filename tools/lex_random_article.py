@@ -31,9 +31,9 @@ def main():
 
         # find article position
         found = 0
+        pos = 0
         while found == 0:
             count = 0
-            pos = 0
 
             # random number
             rnd = random.randint(0, counter)

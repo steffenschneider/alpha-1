@@ -66,4 +66,4 @@ table_name = table_names[0][0]  # ? - todo - get item from tuple
 print(table_name)
 show_all(db, table_name)
 # add_value(db)
-#change_value(db)
+# change_value(db)

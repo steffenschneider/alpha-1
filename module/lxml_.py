@@ -9,6 +9,7 @@ This file is not ready yet.
 
 from lxml import etree
 
+
 def parse_xml(topic):
     xmlpath = ''
     if topic == 'contacts':
@@ -43,7 +44,8 @@ def item_attributes(xml):
     from collections import Counter
     c = Counter(lst)
     taglist = []
-    # print("most used attributes: " + str(c.most_common(4)[0][0]) + ", " + str(c.most_common(4)[1][0]) + ", " + str(c.most_common(4)[2][0]))
+    # print("most used attributes: " + str(c.most_common(4)[0][0]) + ", " +
+    #  str(c.most_common(4)[1][0]) + ", " + str(c.most_common(4)[2][0]))
     for letter, count in c.most_common(15):
         # print('%s: %7d' % (letter, count))
         taglist.append(letter)
@@ -58,10 +60,6 @@ def item_attributes(xml):
     taglist.remove(lst[1])
     # show attributes
     print("attributes: " + str(taglist))
-
-
-def get_y_if_x_equal_xx(xml):
-    pass
 
 
 xml = parse_xml('contacts')

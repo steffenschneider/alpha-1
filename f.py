@@ -400,7 +400,7 @@ def get_installed_modules():
 
 def get_links(url):
     # example link
-    url = 'http://www.heise.de/'
+    # url = 'http://www.heise.de/'
 
     # check link syntax
     if url[:4] != 'http' and url[:3] != 'www':
@@ -474,6 +474,7 @@ def get_my_ip():
         hostname = socket.gethostname()
         myip = socket.gethostbyname(hostname)
         print(myip)
+        return myip
         # or
         # s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
         # s.connect(("8.8.8.8", 80))
@@ -675,7 +676,8 @@ def is_root():
 
 
 def is_some_number(mystring):
-    # print(Bcolors.cyan + re.findall(r".*\\(.*)", inspect.stack()[0][1])[0] + " --- " + inspect.stack()[0][3] + "()" + Bcolors.ENDC)
+    # print(Bcolors.cyan + re.findall(r".*\\(.*)", inspect.stack()[0][1])[0] + " --- "
+    # + inspect.stack()[0][3] + "()" + Bcolors.ENDC)
     """
     Is mystring int of float (with . or , separator)?
     :param mystring: int or str
@@ -714,7 +716,7 @@ def mod():
 
 
 def my_ip():
-    get_my_ip()
+    return get_my_ip()
 
 
 def nm_to_ev(lambda_):
@@ -778,7 +780,7 @@ def pass_fail_stats_fom_outputxml():
     file_ = r"E:/ME/USER/Steffen/rms_files/report/output.xml"
     for i in range(100000):
         print("\n\n")
-        myarr = get_text_from_file(file_)
+        myarr = file_get_text_from_file(file_)
         passcount = 0
         failcount = 0
         starttime = re.findall('\d\d:\d\d:\d\d', myarr[1])[0]
@@ -813,7 +815,8 @@ def pdf_to_csv(filename, separator, threshold):
         3] + "()" + Bcolors.ENDC)
     # the separator to use with the CSV
     separator = ';'
-    # the distance multiplier after which a character is considered part of a new word/column/block. Usually 1.5 works quite well
+    # the distance multiplier after which a character is considered part of a new word/column/block.
+    # Usually 1.5 works quite well
     threshold = 1.5
     try:
         from StringIO import StringIO
@@ -865,7 +868,7 @@ def pdf_to_csv(filename, separator, threshold):
     rsrc = PDFResourceManager()
     outfp = StringIO()
     device = CsvConverter(rsrc, outfp, codec="utf-8", laparams=LAParams())
-    # becuase my test documents are utf-8 (note: utf-8 is the default codec)
+    # because my test documents are utf-8 (note: utf-8 is the default codec)
 
     print("open file")
     fp = open(filename, 'rb')
@@ -906,8 +909,6 @@ def play_sound_under_windows():
 def print_child_nodes(self, xpath):
     print(Bcolors.cyan + re.findall(r".*\\(.*)", inspect.stack()[0][1])[0] + " --- " + inspect.stack()[0][
         3] + "()" + Bcolors.ENDC)
-    raise Exception("Not fully implemented yet")
-
     print("Child nodes of xpath: " + Bcolors.blue + str(xpath) + Bcolors.ENDC)
     children = self._driver.find_elements_by_xpath(str(xpath) + '/*')
     for child in children:
@@ -939,10 +940,10 @@ def random_string():
              '_', '!']
 
     list2 = []
-    Nzeichen = len(list_)
+    n_zeichen = len(list_)
     laenge = 80
     for i in range(laenge):
-        x = int(random.randint(0, Nzeichen - 1))
+        x = int(random.randint(0, n_zeichen - 1))
         list2.append(list_[x])
 
     z = str(''.join(str(i) for i in list2))
@@ -1083,7 +1084,7 @@ def search_all_files_for_string(mystring):
                     else:
                         pass
                         # f.write('NOT ' + filename + '\n')
-            except:
+            except RuntimeError:
                 pass
 
 
@@ -1115,7 +1116,6 @@ def show_all_functions_in_folder(path):
                 counter = 0
 
                 with open(filename) as currentFile:
-                    text = currentFile.readline()
                     for i in range(11111):  # todo
                         text = currentFile.readline()
                         if len(text) < 300:
@@ -1126,7 +1126,7 @@ def show_all_functions_in_folder(path):
                                 pass
                                 # f.write('NOT ' + filename + '\n')
                         counter += 1
-            except:
+            except RuntimeError:
                 pass
 
 
@@ -1283,6 +1283,7 @@ def sort_functions_alphabetically(filename):
     # and end of each def in a help array
     print("len of the input: " + str(len(mylist)))
     for i in range(len(mylist)):
+        # fixme, copy code from sort f.py
         if 'def' in mylist[i]:
             flag_first_def_found = 1
             row += 1
@@ -1344,6 +1345,21 @@ def system_info():
     count_functions_in_fpy()
 
 
+def test_1():
+    assert 1 == 1
+
+
+def test_two_digits_after_point():
+    # float
+    assert two_digits_after_point(1.2345) == 1.23
+    # str
+    assert two_digits_after_point("1.2345") == "1.23"
+    assert two_digits_after_point("1.2") == "1.20"
+    assert two_digits_after_point("1") == "1.00"
+    # int
+    assert two_digits_after_point(3) == "3.00"
+
+
 def textbox(msg):
     print(Bcolors.cyan + re.findall(r".*\\(.*)", inspect.stack()[0][1])[0] + " --- " + inspect.stack()[0][
         3] + "()" + Bcolors.ENDC)
@@ -1400,8 +1416,18 @@ def time_to_seconds(mytime):
 
 
 def two_digits_after_point(value):
-    result = format(value, '.2f')
-    return result
+    """third, fourth etc. digit after decimal separator were removed"""
+    if isinstance(value, str):
+        result = format(float(value), '.2f')
+        return result
+    elif isinstance(value, float):
+        result = format(value, '.2f')
+        return float(result)
+    elif isinstance(value, int):
+        result = format(float(value), '.2f')
+        return float(result)
+    else:
+        raise Exception("type " + str(type(value)) + " not implemented yet")
 
 
 def upgrade_linux():

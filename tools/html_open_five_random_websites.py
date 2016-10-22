@@ -42,35 +42,35 @@ for i in range(len(xml)):
         item = re.findall("<name>(.+)</name>", xml[i])
         try:
             lst[row].append(item[0])
-        except:
+        except RuntimeError:
             pass
 
     if xml[i].strip()[:5] == '<url>':
         item = re.findall("<url>(.+)</url>", xml[i])
         try:
             lst[row].append(item[0])
-        except:
+        except RuntimeError:
             pass
 
     if xml[i].strip()[:5] == '<cate':
         item = re.findall("<category>(.+)</category>", xml[i])
         try:
             lst[row].append(item[0])
-        except:
+        except RuntimeError:
             pass
 
     if xml[i].strip()[:5] == '<acti':
         item = re.findall("<active>(.+)</active>", xml[i])
         try:
             lst[row].append(item[0])
-        except:
+        except RuntimeError:
             pass
 
     if xml[i].strip()[:5] == '<freq':
         item = re.findall("<frequency>(.+)</frequency>", xml[i])
         try:
             lst[row].append(item[0])
-        except:
+        except RuntimeError:
             pass
 
     if xml[i].strip()[:5] == '</ite':
@@ -82,7 +82,7 @@ categories = []
 for i in range(row):
     try:
         categories.append(lst[i][2])
-    except:
+    except RuntimeError:
         pass
 
 # todo - choose category
@@ -112,6 +112,6 @@ for i in range(30):
                     break
             else:
                 continue
-    except:
+    except RuntimeError:
         pass
         # print("xml field empty")

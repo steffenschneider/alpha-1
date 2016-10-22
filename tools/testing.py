@@ -5,6 +5,8 @@ from selenium import webdriver
 
 
 class MyTests(unittest.TestCase):
+    driver = None  # ?
+
     @classmethod
     def setUpClass(cls):
         cls.driver = webdriver.Chrome("/home/kame/Dropbox/software/chromedriver")

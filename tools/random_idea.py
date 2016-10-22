@@ -5,8 +5,8 @@ I try to get good ideas from three random words of my magic list
 
 import random
 import time
-random.seed()
 
+random.seed()
 
 lst = [
     'Abdeckung', 'Abenteuer', 'Abfluss', 'Abwaschen', 'Akku', 'Alarm', 'Aluminiumfolie', 'Ameisenbau',
@@ -79,7 +79,7 @@ for i in range(22):
     ran_a = random.randint(0, len(lst) - 1)
     ran_b = random.randint(0, len(lst) - 1)
     ran_c = random.randint(0, len(lst) - 1)
-    #print('                            ' + lst[ran_a] + '   ' + lst[ran_b] + '   ' + lst[ran_c])
+    # print('                            ' + lst[ran_a] + '   ' + lst[ran_b] + '   ' + lst[ran_c])
     print('                         ' + lst[ran_a] + '   ' + lst[ran_b])
     print("\n\n\n\n")
     time.sleep(22)

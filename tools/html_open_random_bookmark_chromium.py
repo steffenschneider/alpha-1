@@ -20,6 +20,7 @@ print(str(count) + " bookmarks available")
 # choose random bookmark
 rnd = random.randint(0, count)
 count = 0
+line_with_link = ""
 for line in text:
     if '"url":' in line:
         if count == rnd:

@@ -1,5 +1,8 @@
-#!/usr/bin/env python3
+# !/usr/bin/env python3
 # coding: utf-8
+
+import time
+from tkinter import SUNKEN, Tk, Canvas, Frame
 
 __author__ = "Steffen Schneider"
 __copyright__ = "..."
@@ -18,9 +21,6 @@ TODO
 - move circle according to gravity laws
 - add obstacle were objects are bounce
 """
-
-import time
-from tkinter import SUNKEN, Tk, Canvas, Frame
 
 
 class Ball:
@@ -77,5 +77,5 @@ try:
             root.update_idletasks()  # redraw
             time.sleep(.001)
         root.update()  # process events
-except:
+except RuntimeError:
     pass  # to avoid errors when the window is closed

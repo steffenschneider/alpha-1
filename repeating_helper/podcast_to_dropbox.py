@@ -84,7 +84,7 @@ def get_podcasts():
                     place = str(path) + str(titles[2])
                     urllib.request.urlretrieve(mp3_url, place)
 
-        except:
+        except RuntimeError:
             print("Exception: Could not download the file!!!!!!!!!!!!!!!!!!")
             break
 

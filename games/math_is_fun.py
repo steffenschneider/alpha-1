@@ -65,7 +65,6 @@ class MathProgram(tkinter.Tk):
         self.grid_columnconfigure(0, weight=1)  # stretch to the whole window size
         self.update()
 
-
         # answer fields (Buttons)
         answer_fields = [solution, wrong_solution]
         button2 = tkinter.Button(self, text=answer_fields[solution_position], font="Helvetica 65 bold",

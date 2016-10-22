@@ -65,8 +65,7 @@ def delete_duplicates():
             list_output[i][2] = ""
         input_ = (24 - len(list_output[i][0])) * " " + "\t"
         list_output[i] = list_output[i][0] + input_ + list_output[i][1].strip() + "  " + list_output[i][2] + \
-                         list_output[i][
-                             3]
+                         list_output[i][3]
 
     with open(r"/home/kame/Dropbox/data/wortschatz.txt", "w") as myfile:
         for d in range(len(list_output)):

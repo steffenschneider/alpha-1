@@ -9,7 +9,7 @@ def main():
     # check last update date
     path = "/home/kame/Dropbox/data/pip_updater_date.txt"
     start_time = f.file_get_last_line(path)
-    if f.time_diff_in_seconds(start_time, f.get_datetime()) > 3 * 24 * 3600:
+    if f.time_diff_in_seconds(start_time, f.get_datetime()) > 1 * 24 * 3600:
         sudo_password = input("password:")
 
         # update all python 2.x modules
