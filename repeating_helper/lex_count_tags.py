@@ -10,15 +10,11 @@ def main():
     import os
     from collections import Counter
 
-    print("+++ lex_count_tags.py called +++")
-
     # open file
     if os.name == 'nt':  # Windows
         file_ = r"C:\Users\kame\Dropbox\main-lex.txt"
     else:
-        path = "/home/kame/Dropbox/"
-        filename = "main-lex.txt"
-        file_ = path + filename
+        file_ = "/home/kame/Dropbox/main-lex-work.txt"
     with open(file_) as f:
         content = f.readlines()
 
@@ -35,9 +31,9 @@ def main():
 
         # get tags two line behind an empty line
         if found_empty == 4:
-            if re.search(r"\[.{0,40}\]", content[i]):
+            if re.search(r"^\[.{0,90}\]", content[i]):
                 found_empty = 0
-                mo = re.search(r"\[.{0,40}\]", content[i])
+                mo = re.search(r"^\[.{0,90}\]", content[i])
                 lst.append(mo.group()[1:-1])
 
     c = Counter(lst)

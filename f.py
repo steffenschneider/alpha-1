@@ -111,12 +111,22 @@ def check_sleeping_time():
 
 def check_wlan():
     url = "http://www.google.de"
+    from urllib.request import Request, urlopen
+    from urllib.error import URLError, HTTPError
+    req = Request(url)
     try:
-        if urllib.request.urlretrieve(url, "/home/kame/test.txt"):
-            return True
-    except ConnectionError:
-        print("Not connected to the internet!!!")
+        response = urlopen(req)
+    except HTTPError as e:
+        print('The server couldn\'t fulfill the request.')
+        print('Error code: ', e.code)
         return False
+    except URLError as e:
+        print('We failed to reach a server.')
+        print('Reason: ', e.reason)
+        return False
+    else:
+        # everything is fine
+        return True
 
 
 def cli_progress(actual_val, end_val, bar_length=20):
@@ -124,10 +134,6 @@ def cli_progress(actual_val, end_val, bar_length=20):
     hashes = '#' * int(round(percent * bar_length))
     spaces = '-' * (bar_length - len(hashes))
     print("\rPercent: [{0}] {1}%".format(hashes + spaces, int(round(percent * 100))))
-
-
-def click():
-    os.system("xte 'mouseclick 1'")
 
 
 def close_process(process):
@@ -715,6 +721,10 @@ def mod():
     get_mod()
 
 
+def mouse_click():
+    os.system("xte 'mouseclick 1'")
+
+
 def my_ip():
     return get_my_ip()
 
@@ -961,6 +971,8 @@ def random_string_2(n):
 
 
 def read_com_port():
+    # todo - try under windows
+    # doesn't work under linux
     import serial
 
     ser = serial.Serial()
