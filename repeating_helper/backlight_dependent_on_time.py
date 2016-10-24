@@ -18,9 +18,11 @@ def main():
     if 9 * 60 < minute_of_the_day < 19 * 60:
         call(["xbacklight", "-set", "90"])
     if 19 * 60 < minute_of_the_day < 20 * 60:
+        call(["xbacklight", "-set", "30"])
+    if 20 * 60 <= minute_of_the_day < 20.5 * 60:
+        call(["xbacklight", "-set", "20"])
+    if 20.5 * 60 <= minute_of_the_day < 21 * 60:
         call(["xbacklight", "-set", "15"])
-    if 20 * 60 <= minute_of_the_day < 21 * 60:
-        call(["xbacklight", "-set", "10"])
     if 21 * 60 <= minute_of_the_day < 22 * 60:
         call(["xbacklight", "-set", "7"])
     if 22 * 60 <= minute_of_the_day < 23 * 60:

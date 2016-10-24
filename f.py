@@ -2,6 +2,7 @@
 
 import datetime
 import inspect
+import math
 import os
 import random
 import re
@@ -12,6 +13,7 @@ import subprocess
 import sys
 import time
 import urllib
+import webbrowser
 from time import gmtime, strftime, localtime
 
 import easygui
@@ -20,12 +22,9 @@ from selenium import webdriver
 if os.name == 'nt':  # Windows
     import winsound
 
-
-# from pymouse import PyMouse
-
-
 # todo
-# sort files within f-categories
+# refactor old files
+# matplotlib
 
 class Bcolors:
     red = '\033[91m'
@@ -54,8 +53,9 @@ class Bcolors:
 class Pathes:
     custom_report = r"E:\ME\USER\Steffen\rms_files\report\custom_report.html"
     wkhtmltopdf = r"C:/Program Files/wkhtmltopdf/bin"
-    # dropbox_path = "/home/kame/Dropbox/code/python/scripts/f.py"
-    # dropbox_path = "C:/users/steffen.schneider/Dropbox/code/python/scripts/f.py"
+    path_f_py = "/home/kame/Dropbox/code/python/f.py"
+    # dropbox_path = "/home/kame/Dropbox/code/python/f.py"
+    # dropbox_path = "C:/users/steffen.schneider/Dropbox/code/python/f.py"
 
 
 ##########
@@ -63,22 +63,6 @@ class Pathes:
 # START
 ##########
 ##########
-def analyse_element(self, xpath):
-    print(Bcolors.cyan + re.findall(r".*\\(.*)", inspect.stack()[0][1])[0] + " --- " + inspect.stack()[0][
-        3] + "()" + Bcolors.ENDC)
-    elements = self._driver.find_elements_by_xpath(xpath)
-    print("innerHTML of xpath: " + Bcolors.blue + str(xpath) + Bcolors.ENDC)
-    for element in elements:
-        print(element.get_attribute('innerHTML'))
-    print("outerHTML of xpath: " + Bcolors.blue + str(xpath) + Bcolors.ENDC)
-    for element in elements:
-        print(element.get_attribute('outerHTML'))
-    print("text of xpath: " + Bcolors.blue + str(xpath) + Bcolors.ENDC)
-    for element in elements:
-        print(element.text)
-    print("\n")
-
-
 def battery():
     get_battery_status_in_percent()
 
@@ -141,12 +125,28 @@ def close_process(process):
     print("Process killed")
 
 
+def com_port_read():
+    import serial
+    with serial.Serial('/dev/ttyS1', 19200, timeout=1) as ser:
+        x = ser.read()  # read one byte
+        s = ser.read(10)  # read up to ten bytes (timeout)
+        line = ser.readline()  # read a '\n' terminated line
+
+
+def com_port_write():
+    import serial
+    ser = serial.Serial('/dev/ttyUSB0')  # open serial port
+    print(ser.name)  # check which port was really used
+    ser.write(b'hello')  # write a string
+    ser.close()  # close port
+
+
 def count_functions_in_fpy():
     import re
     dropbox_path = get_dropbox_home()
     lst = []
     # works under linux
-    for line in open(os.path.join(dropbox_path, 'code', 'python', 'scripts', 'f.py')):
+    for line in open(os.path.join(dropbox_path, 'code', 'python', 'f.py')):
         # count the word def in this file
         # don't count the word def in this function more than once
         lst += re.findall(r'def ([a-z]){3,}', line)
@@ -605,6 +605,47 @@ def get_weekday():
     return result
 
 
+def html_analyse_element(self, xpath):
+    print(Bcolors.cyan + re.findall(r".*\\(.*)", inspect.stack()[0][1])[0] + " --- " + inspect.stack()[0][
+        3] + "()" + Bcolors.ENDC)
+    elements = self._driver.find_elements_by_xpath(xpath)
+    print("innerHTML of xpath: " + Bcolors.blue + str(xpath) + Bcolors.ENDC)
+    for element in elements:
+        print(element.get_attribute('innerHTML'))
+    print("outerHTML of xpath: " + Bcolors.blue + str(xpath) + Bcolors.ENDC)
+    for element in elements:
+        print(element.get_attribute('outerHTML'))
+    print("text of xpath: " + Bcolors.blue + str(xpath) + Bcolors.ENDC)
+    for element in elements:
+        print(element.text)
+    print("\n")
+
+
+def html_open_random_bookmarks_chromium(n=5):
+    file_ = "/home/kame/.config/chromium/Default/Bookmarks"
+
+    file_input = open(file_, "r")
+    text = file_input.readlines()  # .read() read only one line
+    count = 0
+    for line in text:
+        if '"url":' in line:
+            count += 1
+
+    for i in range(n):
+        # choose random bookmark
+        rnd = random.randint(0, count)
+        count = 0
+        line_with_link = ""
+        for line in text:
+            if '"url":' in line:
+                if count == rnd:
+                    line_with_link = line
+                count += 1
+
+        url = re.findall(r"url.*\"(.*)\"", line_with_link)[0]
+        webbrowser.open(url, new=2)  # open in a new tab, if possible
+
+
 def html_to_pdf(input_file, output_file):
     print(Bcolors.cyan + re.findall(r".*\\(.*)", inspect.stack()[0][1])[0] + " --- " + inspect.stack()[0][
         3] + "()" + Bcolors.ENDC)
@@ -970,30 +1011,6 @@ def random_string_2(n):
     return result
 
 
-def read_com_port():
-    # todo - try under windows
-    # doesn't work under linux
-    import serial
-
-    ser = serial.Serial()
-    ser.baudrate = 9600
-    ser.port = 'COM4'
-    ser.parity = serial.PARITY_NONE
-    ser.open()
-    print("Port open: " + str(ser.is_open))
-
-    line = []
-    while True:
-        for c in ser.read():
-            line.append(c)
-            # if c == '\n':
-            print("Line: " + str(line))
-            # line = []
-            # break
-
-    ser.close()
-
-
 def relais_gateway():
     print(Bcolors.cyan + re.findall(r".*\\(.*)", inspect.stack()[0][1])[0] + " --- " + inspect.stack()[0][
         3] + "()" + Bcolors.ENDC)
@@ -1192,7 +1209,7 @@ def sniffer(host):
 
 
 def sort_f_py():
-    path = "/home/kame/Dropbox/code/python/scripts/f.py"
+    path = Pathes.path_f_py
 
     list_a = file_to_list(path)
     start_sequence = ["##########\n", "##########\n", "# START\n", "##########\n", "##########\n"]
@@ -1358,18 +1375,40 @@ def system_info():
 
 
 def test_1():
-    assert 1 == 1
+    assert (1 == 1)
+    assert (1 != 2)
+    assert isinstance('abc', str)
+    assert isinstance(1, int)
+    assert isinstance(2.34, float)
+    assert not isinstance(123, str), "type is string but shouldn't"
+    assert (2 ** 2 == 4)
+    assert (4.0 / 3 == 1.3333333333333333)
+    assert isinstance(True, bool)
+    assert not isinstance(True, str)
+    assert isinstance('True', str)
+    assert not isinstance('True', bool)
+    assert (int(get_seconds_since_1970_without_microseconds()) > 111111111)
+    assert (math.cos(0.5) ** 2 + math.sin(0.5) ** 2 == 1.0)
+    assert True
+    assert 1
+    assert (int(str(1)) == 1)
+    assert (bin(1) == '0b1')
+    assert (int('0b1111', 2) == 15)
 
 
 def test_two_digits_after_point():
     # float
     assert two_digits_after_point(1.2345) == 1.23
+    assert two_digits_after_point(1.238) == 1.24
+    assert two_digits_after_point(1.2) == 1.2
     # str
     assert two_digits_after_point("1.2345") == "1.23"
+    assert two_digits_after_point("1.238") == "1.24"
     assert two_digits_after_point("1.2") == "1.20"
     assert two_digits_after_point("1") == "1.00"
+    assert two_digits_after_point("-1") == "-1.00"
     # int
-    assert two_digits_after_point(3) == "3.00"
+    assert two_digits_after_point(3) == 3.00
 
 
 def textbox(msg):
@@ -1436,7 +1475,9 @@ def two_digits_after_point(value):
         result = format(value, '.2f')
         return float(result)
     elif isinstance(value, int):
-        result = format(float(value), '.2f')
+        value = float(value)
+        print(value)
+        result = format(value, '.2f')
         return float(result)
     else:
         raise Exception("type " + str(type(value)) + " not implemented yet")

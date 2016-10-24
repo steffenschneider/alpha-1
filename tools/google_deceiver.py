@@ -26,4 +26,9 @@ for i in range(22):
     rnd2 = random.randint(0, 30)
     time.sleep(10 + rnd2)
 
+    # todo
+    # get other words for list
+    # close tab after visiting?
+    # run in background
+
     # click first link?
