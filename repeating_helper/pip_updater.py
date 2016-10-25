@@ -31,7 +31,7 @@ def main():
             if elem != '':
                 elem = re.findall(r"(.*?) \(", elem)[0]
                 print("##########################################################")
-                print("#####           installing" + str(elem))
+                print("#####           installing " + str(elem))
                 print("##########################################################")
                 command = "pip3 install --upgrade " + str(elem)
                 os.system('echo %s|sudo -H -S %s' % (sudo_password, command))
