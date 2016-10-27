@@ -1,7 +1,6 @@
 # coding=utf-8
 
 import datetime
-import easygui
 import inspect
 import math
 import os
@@ -15,11 +14,16 @@ import sys
 import time
 import urllib
 import webbrowser
-from selenium import webdriver
 from time import gmtime, strftime, localtime
+
+import easygui
+from selenium import webdriver
+
+#############################################################
 
 if os.name == 'nt':  # Windows
     import winsound
+
 
 # todo
 # refactor old files
@@ -52,10 +56,12 @@ class Bcolors:
 class Pathes:
     custom_report = r"E:\ME\USER\Steffen\rms_files\report\custom_report.html"
     wkhtmltopdf = r"C:/Program Files/wkhtmltopdf/bin"
-    path_f_py = "/home/kame/Dropbox/code/python/f.py"
+    path_f_py = r"/home/kame/Dropbox/code/python/f.py"
     # dropbox_path = "/home/kame/Dropbox/code/python/f.py"
     # dropbox_path = "C:/users/steffen.schneider/Dropbox/code/python/f.py"
-
+    main_lex = r"/home/kame/Dropbox/main-lex.txt"
+    main_lex_work = r"/home/kame/Dropbox/main-lex-work.txt"
+    diary = r"/home/kame/Desktop/main/diary.txt"
 
 ##########
 ##########
@@ -672,17 +678,47 @@ def install_easygui():
         os.system('echo %s|sudo -S %s' % (sudo_password, command))
 
 
+def install_ipython():
+    print("You have to set the correct python path")
+    print(r"set PATH = % PATH %; C:\Users\steffen.schneider\AppData\Local\Programs\Python\Python35-32\Scripts")
+    os.system("py -3 -m pip install ipython --trusted-host pypi.python.org")
+
+
+def install_numpy():
+    if python_32_or_64_bit() == '32':
+        print("download from http://www.lfd.uci.edu/~gohlke/pythonlibs/#numpy")
+    elif python_32_or_64_bit() == '64':
+        os.system("py -2 -m pip install numpy --trusted-host pypi.python.org")
+        os.system("py -3 -m pip install numpy --trusted-host pypi.python.org")
+    else:
+        print("python_32_or_64_bit() isn't working correct")
+
 def install_pcap():
     os.system("py -2 -m pip install pypcap --trusted-host pypi.python.org")
 
 
+def install_pdfminer():
+    os.system("py -3 -m pip install pdfminer3k --trusted-host pypi.python.org")
+
+
 def install_pymysql():
+    os.system("py -2 -m pip install pymysql --trusted-host pypi.python.org")
     os.system("py -3 -m pip install pymysql --trusted-host pypi.python.org")
 
 
 def install_scapy():
     os.system("py -2 -m pip install scapy --trusted-host pypi.python.org")
     os.system("py -3 -m pip install scapy-python3 --trusted-host pypi.python.org")
+
+
+def install_scipy():
+    os.system("easy_install scipy")
+    # os.system("py -3 -m pip install scipy --trusted-host pypi.python.org")
+
+
+def install_selenium():
+    os.system("py -2 -m pip install selenium --trusted-host pypi.python.org")
+    os.system("py -3 -m pip install selenium --trusted-host pypi.python.org")
 
 
 def install_win32gui():
@@ -969,13 +1005,12 @@ def print_child_nodes(self, xpath):
 
 def python_32_or_64_bit():
     bit = struct.calcsize("P") * 8
-    print("Python: " + str(bit) + " bit")
     # alternative
     # import ctypes
     # print(ctypes.sizeof(ctypes.c_voidp) * 8)
     # import platform
     # print(platform.architecture()[0])
-    return bit
+    return str(bit)
 
 
 def random_string():
@@ -1489,6 +1524,10 @@ def upgrade_linux():
     os.system('echo %s|sudo -S %s' % (sudo_password, command))
     command = 'apt-get upgrade -y'  # -y for typing yes
     os.system('echo %s|sudo -S %s' % (sudo_password, command))
+
+
+def upgrade_pip():
+    os.system("py -3 -m pip install --upgrade pip --trusted-host pypi.python.org")
 
 
 def utc_to_localtime(timestring):

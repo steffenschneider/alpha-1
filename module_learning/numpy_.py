@@ -3,6 +3,12 @@ import numpy as np
 ##abs
 abs(-1)  # 1
 
+##all
+np.all([1, 1, 1, 0])  # False
+
+##any
+np.any([1, 0, 0, 0])  # True
+
 ##arange
 x = np.arange(10)
 # array([0, 1, 2, 3, 4, 5, 6, 7, 8, 9])
@@ -34,6 +40,9 @@ print(c)  # Prints "[[ 7.  7.]
 ##hstack
 # put arrays together horizontally
 
+##linalg.det()
+# calculate Determinate
+
 ##linalg.eig()
 # calculate Eigenwert
 
@@ -41,6 +50,7 @@ print(c)  # Prints "[[ 7.  7.]
 # inverse of a matrix
 
 ##linspace
+# np.linspace(from, to, n_numbers)
 np.linspace(1., 4., 6)
 # array([ 1. ,  1.6,  2.2,  2.8,  3.4,  4. ])
 
