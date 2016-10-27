@@ -21,7 +21,7 @@ def main():
                    'Buch', 'C', 'Chemie', 'Computer', 'Cpp', 'CSS', 'Datenbank', 'Elektrotechnik', 'Erfindung',
                    'Ernährung', 'Error', 'Gehirn', 'Genetik', 'Geographie',
                    'Geologie', 'Geschichte', 'git', 'GPS', 'Hardware', 'Hochfrequenztechnik', 'HTML', 'Japan',
-                   'Java', 'JavaScript', 'Jenkins', 'jQuery', 'KI', 'Kochen', 'Kommunikation', 'Lasertechnik',
+                   'Java', 'javascript', 'Jenkins', 'jQuery', 'KI', 'Kochen', 'Kommunikation', 'Lasertechnik',
                    'Latex', 'Linux', 'Literatur', 'Materialwissenschaften', 'Mathematik', 'Matlab',
                    'Mechanik', 'Medien', 'Medizin', 'Messtechnik', 'Mikrocontroller',
                    'MRT', 'Netzwerktechnik', 'Nico', 'Optik', 'Organisation', 'Persönlichkeit', 'Philosophie', 'PHP',

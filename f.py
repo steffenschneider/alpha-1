@@ -1,6 +1,7 @@
 # coding=utf-8
 
 import datetime
+import easygui
 import inspect
 import math
 import os
@@ -14,10 +15,8 @@ import sys
 import time
 import urllib
 import webbrowser
-from time import gmtime, strftime, localtime
-
-import easygui
 from selenium import webdriver
+from time import gmtime, strftime, localtime
 
 if os.name == 'nt':  # Windows
     import winsound
@@ -633,7 +632,7 @@ def html_open_random_bookmarks_chromium(n=5):
 
     for i in range(n):
         # choose random bookmark
-        rnd = random.randint(0, count)
+        rnd = random.randint(0, count - 1)
         count = 0
         line_with_link = ""
         for line in text:
@@ -642,6 +641,7 @@ def html_open_random_bookmarks_chromium(n=5):
                     line_with_link = line
                 count += 1
 
+        # todo - sometimes not working
         url = re.findall(r"url.*\"(.*)\"", line_with_link)[0]
         webbrowser.open(url, new=2)  # open in a new tab, if possible
 
