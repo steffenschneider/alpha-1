@@ -1,3 +1,5 @@
+# coding=utf-8
+
 ## reverse
 lst = ['a', 'b', 'c', 'd', 'e']
 print(lst.reverse())  # None !!!
