@@ -38,3 +38,6 @@ y[y < -tol] = np.nan
 
 # p.plot(x, y, 'g-', lw=1)
 # p.show()
+
+##trunc
+# drop fractional part of x
