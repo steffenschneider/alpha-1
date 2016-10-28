@@ -18,9 +18,9 @@ import xml.etree.ElementTree as ET
 from time import gmtime, strftime, localtime
 from tkinter import SUNKEN, Tk, Canvas, Frame
 
+import PIL  # correct in Python3
 import easygui
 import numpy
-import pillow
 import pyautoit
 import pymodbus3
 import pymouse
@@ -29,7 +29,7 @@ import pyvirtualdisplay
 import pywin32
 import pywinauto
 import requests
-import scipy
+import scipy  # zuerst numpy installieren
 import vpython
 from selenium import webdriver
 from visual import *
@@ -66,7 +66,7 @@ logging
 math
 numpy
 os
-pillow
+PIL
 pyautoit
 pymodbus3
 pymouse

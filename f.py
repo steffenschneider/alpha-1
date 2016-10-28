@@ -687,6 +687,7 @@ def install_ipython():
 def install_numpy():
     if python_32_or_64_bit() == '32':
         print("download from http://www.lfd.uci.edu/~gohlke/pythonlibs/#numpy")
+        print("pip install xxxxx.whl")
     elif python_32_or_64_bit() == '64':
         os.system("py -2 -m pip install numpy --trusted-host pypi.python.org")
         os.system("py -3 -m pip install numpy --trusted-host pypi.python.org")
@@ -699,6 +700,11 @@ def install_pcap():
 
 def install_pdfminer():
     os.system("py -3 -m pip install pdfminer3k --trusted-host pypi.python.org")
+
+
+def install_pillow():
+    os.system("py -2 -m pip install pillow --trusted-host pypi.python.org")
+    os.system("py -3 -m pip install pillow --trusted-host pypi.python.org")
 
 
 def install_pymysql():
@@ -720,6 +726,14 @@ def install_selenium():
     os.system("py -2 -m pip install selenium --trusted-host pypi.python.org")
     os.system("py -3 -m pip install selenium --trusted-host pypi.python.org")
 
+
+def install_tkinter():
+    raise NotImplementedError
+    # Linux:
+    # sagi tkinter-tk
+    # sagi tkinter3-tk
+    # Windows:
+    # wird bei der Pythoninstallation wahlweise hinzugefügt
 
 def install_win32gui():
     print("First download from here --> https://sourceforge.net/projects/pywin32/files/pywin32")
