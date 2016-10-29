@@ -281,8 +281,10 @@ def file_insert_line(path, index, value):
     f = open(path, "r+")
     data = f.readlines()
     data.insert(index, value)
-    contents = "".join(data)
-    f.write(contents)
+    f.seek(0)
+    data = "".join(data)
+    f.write(data)
+    f.truncate()
     f.close()
 
 
