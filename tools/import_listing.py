@@ -26,8 +26,8 @@ import pymodbus3
 import pymouse
 import pymysql
 import pyvirtualdisplay
-import pywin32
-import pywinauto
+import pywin32  # only win?
+import pywinauto  # only win?
 import requests
 import scipy  # zuerst numpy installieren
 import vpython

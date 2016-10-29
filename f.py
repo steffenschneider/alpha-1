@@ -62,6 +62,7 @@ class Pathes:
     main_lex = r"/home/kame/Dropbox/main-lex.txt"
     main_lex_work = r"/home/kame/Dropbox/main-lex-work.txt"
     diary = r"/home/kame/Desktop/main/diary.txt"
+    testfile = r"/home/kame/Desktop/testfile.txt"
 
 ##########
 ##########
@@ -218,6 +219,17 @@ def file_delete_empty_lines(file_in):
         fout.writelines(data)
 
 
+def delete_duplicates_in_list(lst):
+    result = list(set(lst))
+    return result
+
+
+def file_delete_duplicate_lines(path):
+    lst = file_to_list(path)
+    lst_2 = delete_duplicates_in_list(lst)
+    list_to_file(path, lst_2)
+
+
 def file_delete_first_line(file_in):
     with open(file_in, 'r') as fin:
         data = fin.read().splitlines(True)
@@ -265,15 +277,13 @@ def file_get_text_from_file(path):
     return myarr
 
 
-def file_insert_line(file_in, index, value):
-    f = open(file_in, "r")
-    contents = f.readlines()
-    f.close()
+def file_insert_line(path, index, value):
+    with open(path) as f:
+        contents = f.readlines()
     contents.insert(index, value)
-    f = open(file_in, "w")
-    contents = "".join(contents)
-    f.write(contents)
-    f.close()
+    with open(path) as f:
+        contents = "".join(contents)
+        f.write(contents)
 
 
 def file_replace_words(file_in, word_to_replace, replace_with):
@@ -287,6 +297,12 @@ def file_replace_words(file_in, word_to_replace, replace_with):
     f.close()
 
 
+def file_sort_lines(path):
+    lst = file_to_list(path)
+    sorted_list = sorted(lst)
+    list_to_file(path, sorted_list)
+    
+
 def file_to_list(path):
     with open(path) as f:
         contents = f.readlines()
@@ -294,7 +310,6 @@ def file_to_list(path):
 
 
 def get_battery_status_in_percent():
-    #
     path = "/sys/class/power_supply/BAT0/energy_now"
     if is_dir_available(path):
         pass
@@ -801,6 +816,7 @@ def list_add_headline(mylist, header):
 def list_to_file(path, mylist):
     f = open(path, "w")
     f.write(''.join(str(x) for x in mylist))
+    f.close()
 
 
 def list_to_tab_delimited_string(mylist):
