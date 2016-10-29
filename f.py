@@ -188,6 +188,11 @@ def delete_chrome_history():
     raise Exception("Not implemented yet")
 
 
+def delete_duplicates_in_list(lst):
+    result = list(set(lst))
+    return result
+
+
 def detect_devices():
     import subprocess
     df = subprocess.check_output("lsusb", shell=True)
@@ -212,22 +217,17 @@ def file_count_lines(path):
     return len(a)
 
 
+def file_delete_duplicate_lines(path):
+    lst = file_to_list(path)
+    lst_2 = delete_duplicates_in_list(lst)
+    list_to_file(path, lst_2)
+
+
 def file_delete_empty_lines(file_in):
     with open(file_in, 'r') as fin:
         data = ("".join(line for line in fin if not line.isspace()))
     with open(file_in, 'w') as fout:
         fout.writelines(data)
-
-
-def delete_duplicates_in_list(lst):
-    result = list(set(lst))
-    return result
-
-
-def file_delete_duplicate_lines(path):
-    lst = file_to_list(path)
-    lst_2 = delete_duplicates_in_list(lst)
-    list_to_file(path, lst_2)
 
 
 def file_delete_first_line(file_in):
@@ -278,12 +278,12 @@ def file_get_text_from_file(path):
 
 
 def file_insert_line(path, index, value):
-    with open(path) as f:
-        contents = f.readlines()
-    contents.insert(index, value)
-    with open(path) as f:
-        contents = "".join(contents)
-        f.write(contents)
+    f = open(path, "r+")
+    data = f.readlines()
+    data.insert(index, value)
+    contents = "".join(data)
+    f.write(contents)
+    f.close()
 
 
 def file_replace_words(file_in, word_to_replace, replace_with):
@@ -307,6 +307,33 @@ def file_to_list(path):
     with open(path) as f:
         contents = f.readlines()
     return contents
+
+
+def file_word_analysis(path):
+    from collections import Counter
+    file = open(path, "r")
+    lines = file.readlines()
+    words = [word.lower() for line in lines for word in line.split()]
+    list2 = []
+    for word in words:
+        word = re.sub("\.", "", word)
+        word = re.sub("-", "", word)
+        word = re.sub("\(", "", word)
+        word = re.sub("\)", "", word)
+        word = re.sub("\?", "", word)
+        word = re.sub("\!", "", word)
+        word = re.sub("#", "", word)
+        word = re.sub("\[", "", word)
+        word = re.sub("\]", "", word)
+        word = re.sub(",", "", word)
+        word = re.sub("\"", "", word)
+        word = re.sub("\'", "", word)
+        word = re.sub(":", "", word)
+        word = re.sub(";", "", word)
+        word = re.sub("\/", " ", word)
+        list2.append(word)
+    wordcount = Counter(list2)
+    for item in sorted(wordcount.items(), key=lambda l: l[1], reverse=True): print("{}\t{}".format(*item))
 
 
 def get_battery_status_in_percent():
@@ -413,7 +440,6 @@ def get_id_tags(url):
     # get content
     content_ = urllib.request.urlopen(url).read()
     items = re.findall(r'id=\"(.*?)\"', str(content_))
-    print(items)
     return items
 
 
@@ -1424,6 +1450,16 @@ def sort_functions_alphabetically(filename):
 def sound_beepequivalent_under_linux():
     import subprocess
     subprocess.call(['/usr/bin/canberra-gtk-play', '--id', 'bell'])
+
+
+def stack_overflow_python_documentation_random_topic():
+    rnd = random.randint(1, 8)
+    url = r"http://stackoverflow.com/documentation/python/topics?page=" + str(rnd) + "&tab=popular"
+    content_ = urllib.request.urlopen(url).read().decode('UTF-8')
+    items = re.findall("data-topic-url=\"(.*)\">", content_)  # get links with ending .html
+    item_url = random.choice(items)
+    new = 2  # open in a new tab, if possible
+    webbrowser.open(item_url, new=new)
 
 
 def string_to_file(path, mystring):
