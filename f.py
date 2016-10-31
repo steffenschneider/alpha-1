@@ -841,6 +841,12 @@ def list_add_headline(mylist, header):
     return mylist
 
 
+def list_delete_smallest(numbers):
+    if numbers:
+        numbers.remove(min(numbers))
+    return numbers
+
+
 def list_to_file(path, mylist):
     f = open(path, "w")
     f.write(''.join(str(x) for x in mylist))

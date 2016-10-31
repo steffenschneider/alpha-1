@@ -1,4 +1,8 @@
-# Sonderzeichen to lower
+## count
+mystring = "alökajsdfadhfausodf"
+mystring.count('a')
+
+## Sonderzeichen to lower
 #         "!§$%&/()=?`*'ÄÜÖ_:;><,.#äö+ü´ß".lower()
 # output: "!§$%&/()=?`*'äüö_:;><,.#äö+ü´ß"
 
