@@ -19,9 +19,9 @@ from time import gmtime, strftime, localtime
 from tkinter import SUNKEN, Tk, Canvas, Frame
 
 import PIL  # correct in Python3
+import autoit  # module: pyautoit
 import easygui
 import numpy
-import pyautoit
 import pymodbus3
 import pymouse
 import pymysql
@@ -31,6 +31,7 @@ import pywinauto  # only win?
 import requests
 import scipy  # zuerst numpy installieren
 import vpython
+import win32gui
 from selenium import webdriver
 from visual import *
 
@@ -44,6 +45,7 @@ SUNKEN
 Tk
 Canvas
 Frame
+win32gui
 gmtime
 localtime
 strftime
@@ -67,7 +69,7 @@ math
 numpy
 os
 PIL
-pyautoit
+autoit
 pymodbus3
 pymouse
 pymysql

@@ -69,6 +69,20 @@ class Pathes:
 # START
 ##########
 ##########
+def analyse_element(self, xpath):
+    elements = self._driver.find_elements_by_xpath(xpath)
+    print("innerHTML of xpath: " + Bcolors.blue + str(xpath) + Bcolors.ENDC)
+    for element in elements:
+        print(element.get_attribute('innerHTML'))
+    print("outerHTML of xpath: " + Bcolors.blue + str(xpath) + Bcolors.ENDC)
+    for element in elements:
+        print(element.get_attribute('outerHTML'))
+    print("text of xpath: " + Bcolors.blue + str(xpath) + Bcolors.ENDC)
+    for element in elements:
+        print(element.text)
+    print("\n")
+
+
 def battery():
     get_battery_status_in_percent()
 
@@ -750,9 +764,34 @@ def install_pillow():
     os.system("py -3 -m pip install pillow --trusted-host pypi.python.org")
 
 
+def install_pyautoit():
+    os.system("py -2 -m pip install pyautoit --trusted-host pypi.python.org")
+    os.system("py -3 -m pip install pyautoit --trusted-host pypi.python.org")
+
+
+def install_pymodbus3():
+    # version for python2 ???
+    os.system("py -3 -m pip install pymodbus3 --trusted-host pypi.python.org")
+
+
+def install_pymouse():
+    os.system("py -2 -m pip install pymouse --trusted-host pypi.python.org")
+    os.system("py -3 -m pip install pymouse --trusted-host pypi.python.org")
+
+
 def install_pymysql():
     os.system("py -2 -m pip install pymysql --trusted-host pypi.python.org")
     os.system("py -3 -m pip install pymysql --trusted-host pypi.python.org")
+
+
+def install_pywin32():
+    os.system("py -2 -m pip install pypiwin32 --trusted-host pypi.python.org")
+    os.system("py -3 -m pip install pypiwin32 --trusted-host pypi.python.org")
+
+
+def install_pywinauto():
+    os.system("py -2 -m pip install pywinauto --trusted-host pypi.python.org")
+    os.system("py -3 -m pip install pywinauto --trusted-host pypi.python.org")
 
 
 def install_scapy():
@@ -1506,6 +1545,7 @@ def test_1():
 
 
 def test_two_digits_after_point():
+    # todo - run with nose or pytest??????
     # float
     assert two_digits_after_point(1.2345) == 1.23
     assert two_digits_after_point(1.238) == 1.24
