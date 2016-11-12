@@ -1238,21 +1238,28 @@ def rotronic_analyse_sync():
 
 def search_all_files_for_string(mystring):
     import glob
-    path = r"C:\Users\steffen.schneider\Desktop\RMS\**"
+    # path = r"C:\Users\steffen.schneider\Desktop\RMS\**"
+    path = r"/home/kame/Desktop/**/*"
 
-    with open(r"C:/Users/steffen.schneider/Desktop/search.txt", "w") as f:
+    # with open(r"C:/Users/steffen.schneider/Desktop/search.txt", "w") as f:
+    with open(r"/home/kame/Desktop/search.txt", mode="w") as f:
         for filename in glob.iglob(path, recursive=True):
-            # if name.endswith((".html", ".htm", ".txt", ".vb")):
-            try:
-                with open(filename) as currentFile:
-                    text = currentFile.read()
-                    if mystring in text:
-                        f.write('Found string in ' + filename + '\n')
-                    else:
-                        pass
-                        # f.write('NOT ' + filename + '\n')
-            except RuntimeError:
-                pass
+
+            if filename.endswith((".txt", ".xyz")):
+                print(filename)
+                try:
+                    with open(filename, "r", encoding='utf-8', errors='ignore') as currentFile:
+                        try:
+                            for line in currentFile:
+                                if mystring in line:
+                                    f.write('Found string in ' + filename + '\n')
+                                else:
+                                    pass
+                                    # f.write('NOT ' + filename + '\n')
+                        except RuntimeError:
+                            pass
+                except RuntimeError:
+                    pass
 
 
 def search_file_in_path_and_subfolders(filename, path):

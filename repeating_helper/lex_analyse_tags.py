@@ -18,7 +18,8 @@ def main():
     for path in pathes:
         taglist = ['!', '!!', '!!!', 'A', 'Abkürzung', 'Algebra', 'ajax', 'Arbeit', 'Astronomie',
                    'Auto', 'awk', 'Bash', 'Biologie', 'Botanik',
-                   'Buch', 'C', 'Chemie', 'Computer', 'Cpp', 'CSS', 'Datenbank', 'Elektrotechnik', 'Erfindung',
+                   'Buch', 'C', 'Chemie', 'Computer', 'Cpp', 'CSharp', 'CSS', 'Datenbank', 'Elektrotechnik',
+                   'Erfindung',
                    'Ernährung', 'Error', 'Gehirn', 'Genetik', 'Geographie',
                    'Geologie', 'Geschichte', 'git', 'GPS', 'Hardware', 'Hochfrequenztechnik', 'HTML', 'Japan',
                    'Java', 'JavaScript', 'Jenkins', 'jQuery', 'KI', 'Kochen', 'Kommunikation', 'Lasertechnik',

@@ -7,12 +7,12 @@ from repeating_helper import pip_updater
 
 
 def main():
+    backlight_dependent_on_time.main()
     check_wlan()
     check_sleeping_time()
     get_battery_status_in_percent()
     remove_pyc.main()
     lex_sort.main()
-    backlight_dependent_on_time.main()
     wortschatz.delete_duplicates()
     lex_spell_checker.main()
     lex_duplicates.main()
