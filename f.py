@@ -1,5 +1,6 @@
 # coding=utf-8
 
+import csv
 import datetime
 import inspect
 import math
@@ -63,6 +64,7 @@ class Pathes:
     main_lex_work = r"/home/kame/Dropbox/main-lex-work.txt"
     diary = r"/home/kame/Desktop/main/diary.txt"
     testfile = r"/home/kame/Desktop/testfile.txt"
+    todo_privat = r"/home/kame/Desktop/main/wichtig/ods/TODO_privat.xlsx"
 
 ##########
 ##########
@@ -90,6 +92,14 @@ def battery():
 def binary_to_string(binary_string):
     result = binary_string.decode('UTF-8')
     return result
+
+
+def get_todo():
+    path = Pathes.todo_privat
+    with open(path) as f:
+        reader = csv.DictReader(f)
+        for row in reader:
+            print('{:.<40} {}'.format(row['TASK'], row['DATE']))
 
 
 def change_dir(path):

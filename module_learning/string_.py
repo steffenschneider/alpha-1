@@ -9,3 +9,8 @@ mystring.count('a')
 # ß to upper
 'ß'.upper()  # 'SS'
 'SS'.lower()  # 'ss'
+
+## format
+# print columns in a pretty style
+# fill up points until position 40
+print('{:.<40} {}'.format('aaa', 'bbb'))
