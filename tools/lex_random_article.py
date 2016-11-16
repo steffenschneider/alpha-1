@@ -48,7 +48,7 @@ def main():
                             found = 1
 
         # show random article
-        for i in range(44):
+        for i in range(11):
             print("")
         end = 0
         while end == 0:
@@ -58,7 +58,7 @@ def main():
                 end = 1
         print("")
 
-        time.sleep(20)
+        time.sleep(5)
 
 
 if __name__ == '__main__':

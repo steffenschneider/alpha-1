@@ -9,27 +9,33 @@ np.all([1, 1, 1, 0])  # False
 ##any
 np.any([1, 0, 0, 0])  # True
 
-##arange
+## arange
 x = np.arange(10)
 # array([0, 1, 2, 3, 4, 5, 6, 7, 8, 9])
 
-##array
+## array
 np.array([1, 2, 3], dtype='f')
 # array([ 1.,  2.,  3.], dtype=float32)
 
-##cos
+## cos
 
-##dot
+## diag
+np.diag([1, 2, 3])
+# array([[1, 0, 0],
+#        [0, 2, 0],
+#        [0, 0, 3]])
+
+## dot
 # matrix product
 
-##eye
+## eye
 d = np.eye(2)  # Create a 2x2 identity matrix
 print(d)  # Prints "[[ 1.  0.]
 #          [ 0.  1.]]"
 
-##floor
+## floor
 
-##full
+## full
 c = np.full((2, 2), 7)  # Create a constant array
 print(c)  # Prints "[[ 7.  7.]
 #          [ 7.  7.]]"

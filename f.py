@@ -65,6 +65,7 @@ class Pathes:
     diary = r"/home/kame/Desktop/main/diary.txt"
     testfile = r"/home/kame/Desktop/testfile.txt"
     todo_privat = r"/home/kame/Desktop/main/wichtig/ods/TODO_privat.xlsx"
+    statistik_privat = r"/home/kame/Desktop/main/wichtig/ods/stats.xlsx"
 
 ##########
 ##########
@@ -92,14 +93,6 @@ def battery():
 def binary_to_string(binary_string):
     result = binary_string.decode('UTF-8')
     return result
-
-
-def get_todo():
-    path = Pathes.todo_privat
-    with open(path) as f:
-        reader = csv.DictReader(f)
-        for row in reader:
-            print('{:.<40} {}'.format(row['TASK'], row['DATE']))
 
 
 def change_dir(path):
@@ -186,6 +179,21 @@ def count_functions_in_fpy():
 def create_dir_if_not_exists(directory):
     if not is_dir_available(directory):
         os.makedirs(directory)
+
+
+def date_in_the_future(date):
+    # date-input: 20.12.2016
+    import datetime
+    from time import strptime
+    datetime_string = strptime(date, "%d.%m.%Y")
+    d = datetime.datetime(datetime_string[0], datetime_string[1], datetime_string[2])
+    now = datetime.datetime.now()
+    delta = d - now
+    diff = delta.days + 1
+    if diff > 0:
+        return True
+    else:
+        return False
 
 
 def datetime_to_seconds(mydate):
@@ -652,6 +660,23 @@ def get_temperature():
 def get_time():
     time_ = get_local_time()
     return time_
+
+
+def get_todo():
+    path = Pathes.todo_privat
+    with open(path) as f:
+        reader = csv.DictReader(f)
+        for row in reader:
+            print('{:.<41} {}'.format(row['TASK'], row['DATE']))
+
+
+def get_todo_without_future():
+    path = Pathes.todo_privat
+    with open(path) as f:
+        reader = csv.DictReader(f)
+        for row in reader:
+            if not date_in_the_future(row['DATE']):
+                print('{:.<41} {}'.format(row['TASK'], row['DATE']))
 
 
 def get_top():

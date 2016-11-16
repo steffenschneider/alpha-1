@@ -31,9 +31,13 @@ def main():
                    'Psychologie', 'Python', 'Quantenphysik', 'r', 'Raumfahrt',
                    'Radar', 'Rechtschreibung', 'Regex', 'Religion', 'Rest', 'Robot',
                    'Security', 'Selenium', 'Signalverarbeitung',
-                   'Software', 'Soziologie', 'SQL', 'Strahlenphysik', 'svn', 'Tagebuch', 'Technik', 'Testing',
+                   'Software', 'Soziologie', 'SQL', 'Strahlenphysik', 'svn', 'Systemtest', 'Tagebuch', 'Technik',
+                   'Testing',
                    'Testprogramm', 'Tier', 'todo', 'Umweltschutz', 'VB', 'vbnet', 'Verweis',
-                   'Windows', 'Wirtschaft', 'Wissen', 'Wortschatz', 'WPF', 'XAML', 'XML', 'XNA', 'Zen']
+                   'Windows', 'Wirtschaft', 'Wissen', 'Wortschatz', 'WPF', 'XAML', 'XML', 'XNA', 'Zen',
+                   'Elektrotechnik][Modbus',
+                   'r][devices', 'r][Systemtest', 'r][Webtest', 'r][Webtest][robot',
+                   ]
 
         # key: used tag
         # value: tag you should use instead
@@ -78,9 +82,9 @@ def main():
                     elif mo.group()[1:-1] in replacement_dict:
                         # show obsolete tags
                         key = mo.group()[1:-1]
-                        print(key),
+                        print(key)
                         # change tag to the following tag
-                        print(" --> "),
+                        print(" --> ")
                         print(replacement_dict[key])
                     else:
                         # show new tags
