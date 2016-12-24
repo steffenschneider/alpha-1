@@ -13,7 +13,7 @@ def main():
         #             'Politik', 'Psychologie', 'Python', 'Rest', 'Testing',
         #             'Testprogramm', 'Tier', 'Wirtschaft']
 
-        unwant_category = ['Bash', 'Cpp', 'git', 'JavaScript', 'Verweis']
+        unwant_category = ['Bash', 'Cpp', 'git', 'JavaScript', 'Optik', 'Verweis']
 
         # read file content
         path = "/home/kame/Dropbox/"

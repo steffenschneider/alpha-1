@@ -1,4 +1,4 @@
-# -*- coding: utf-8 -*-
+# coding=utf-8
 
 # works also in csharp
 # if 'posix' in os.name:
@@ -7,17 +7,26 @@
 #    print("Doesn't work under windows because of wrong path in csharp file.")
 #    os.system("C:/Users/kame/Dropbox/code/csharp/monodevelop/lex_/lex_/bin/Debug/lex_.exe")
 
+import os
 
 def main():
     # get content
-    pathes = ["/home/kame/Dropbox/main-lex.txt",
-              "/home/kame/Dropbox/main-lex-work.txt",
-              "/home/kame/Desktop/main/diary.txt",
-              ]
+    if os.name == 'nt':  # Windows
+        pathes = [  # "C:/Users/steffen.schneider/Dropbox/main-lex.txt",
+            "C:/Users/steffen.schneider/Dropbox/main-lex-work.txt",
+            # "C:/Users/steffen.schneider/Desktop/main/diary.txt",
+        ]
+    elif os.name == 'posix':
+        pathes = ["/home/kame/Dropbox/main-lex.txt",
+                  "/home/kame/Dropbox/main-lex-work.txt",
+                  "/home/kame/Desktop/main/diary.txt",
+                  ]
+    else:
+        raise Exception("unknown system")
 
     for path in pathes:
         # print(path)
-        file_input = open(path, "r")
+        file_input = open(path, "r", encoding='utf-8')
         text = file_input.readlines()  # .read() read only one line
 
         # create 2d-list
@@ -54,15 +63,19 @@ def main():
             error_message_1 = "Article: " + str(lst[k][0])
             assert lst[k][0][:2] == '##', error_message_1
             # tag should stay in square brackets
-            error_message_2 = "Tag: " + str(lst[k][1])
+            try:
+                error_message_2 = "Tag: " + str(lst[k][1])
+            except:
+                print(k)
+                print(lst[k][0])
             assert lst[k][1][0] == '[', str(error_message_1) + "  " + str(error_message_2)
-            assert lst[k][1][-2] == ']', error_message_2
+            assert lst[k][1][-2] == ']', lst[k][0]
 
         # sort articles - first tag - then name
         outputlst = sorted(lst, key=lambda x: (x[1].lower(), x[0].lower()))
 
         # write new file
-        f = open(path, 'w')
+        f = open(path, 'w', encoding='utf-8')
         for i in range(n_articles):
             for j in range(len(outputlst[i])):
                 f.write(outputlst[i][j])

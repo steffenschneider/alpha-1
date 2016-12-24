@@ -1,12 +1,27 @@
+# coding=utf-8
+
+import os
+import sys
+
 import f
 from f import Pathes
 
+
 def main():
+    if os.name == 'posix':
+        sys.path.append("/home/kame/Dropbox/code/python/")
+
+    pathes = []
     # get content
-    pathes = [Pathes.main_lex_work,
-              Pathes.main_lex,
-              Pathes.diary
-              ]
+    if os.name == 'poxix':
+        pathes = [Pathes.main_lex_work,
+                  Pathes.main_lex,
+                  Pathes.diary
+                  ]
+    if os.name == 'nt':
+        pathes = [Pathes.main_lex_work,
+                  Pathes.main_lex,
+                  ]
 
     for path in pathes:
         f.file_replace_words(path, 'Addresse', 'Adresse')

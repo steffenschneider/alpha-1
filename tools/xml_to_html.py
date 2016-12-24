@@ -15,8 +15,8 @@ import xml.etree.ElementTree as ET
 def main():
     # get content from xml
     xmlpath = "/home/kame/Dropbox/data/links.xml"
-    xml = ET.parse(xmlpath)
-    # print(etree.tostring(xml))
+    tree = ET.parse(xmlpath)
+    root = tree.getroot()
 
     # todo - sort for category
     # todo - check for empty xml-items
@@ -30,7 +30,8 @@ def main():
     f.write("<body>")
     f.write("My bookmarks:<br>")
 
-    n_items = len(xml.xpath("//item"))
+    # count bookmarks
+    n_items = len(root.findall("./item"))
     print(str(n_items) + " bookmarks in the xml-file")
 
     # sort categories in 2D-list
@@ -39,16 +40,16 @@ def main():
         elements.append([])
 
         # first column: category
-        category = str(xml.xpath("//item[" + str(i + 1) + "]/category/text()")[0]).lower()
+        category = root.findall("./item[" + str(i + 1) + "]/category")[0].text.lower()
         elements[i].append(category)
 
         # second column: url
-        name_ = str(xml.xpath("//item[" + str(i + 1) + "]/name/text()")[0])
-        urltext = "<a href=\"" + str(xml.xpath("//item[" + str(i + 1) + "]/url/text()")[0]) + "\">" + str(
+        name_ = root.findall("./item[" + str(i + 1) + "]/name")[0].text
+        urltext = "<a href=\"" + str(root.findall("./item[" + str(i + 1) + "]/url")[0].text) + "\">" + str(
             name_) + "</a><br>"
         elements[i].append(urltext)
 
-        active = str(xml.xpath("//item[" + str(i + 1) + "]/active/text()")[0])
+        active = root.findall("./item[" + str(i + 1) + "]/active")[0].text
         elements[i].append(active)
 
     elements = sorted(elements, key=lambda l: l[0])

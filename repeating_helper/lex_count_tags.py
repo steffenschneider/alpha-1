@@ -12,10 +12,10 @@ def main():
 
     # open file
     if os.name == 'nt':  # Windows
-        file_ = r"C:\Users\kame\Dropbox\main-lex.txt"
+        file_ = "C:/Users/steffen.schneider/dropbox/main-lex.txt"
     else:
-        file_ = "/home/kame/Dropbox/main-lex-work.txt"
-    with open(file_) as f:
+        file_ = "/home/kame/Dropbox/main-lex.txt"
+    with open(file_, encoding='utf8') as f:
         content = f.readlines()
 
     found_empty = 0

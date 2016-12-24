@@ -55,9 +55,9 @@ def main():
                     if folder_or_file == 11:
                         # check last change time
                         if os.stat(s).st_mtime - os.stat(d).st_mtime > 1:
+                            print(s)
                             shutil.rmtree(d)
                             shutil.copytree(s, d, symlinks, ignore)
-                            print(s)
                         else:
                             # print("++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++")
                             pass
@@ -66,20 +66,26 @@ def main():
                         # check last change time
                         if os.stat(s).st_mtime - os.stat(d).st_mtime > 1:
                             os.remove(d)
-                            shutil.copy2(s, d)
                             print(s)
+                            shutil.copy2(s, d)
                         else:
                             # print("+++++++++++++++++++++++++++++++++++++++++++++++++++++")
                             pass
 
                     if folder_or_file == 12:
-                        shutil.copytree(s, d, symlinks, ignore)
                         print(s)
+                        shutil.copytree(s, d, symlinks, ignore)
 
                     # file
                     if folder_or_file == 22:
-                        shutil.copy2(s, d)
                         print(s)
+                        shutil.copy2(s, d)
+
+            # xxx
+            input("Also save xxx")
+
+            # Anki
+            input("Please export Anki.apkg and insert to main folder")
 
             # Dropbox files
             print("copy Dropbox")

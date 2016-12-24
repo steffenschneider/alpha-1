@@ -1,10 +1,14 @@
 def delete_duplicates():
     import re
+    import os
     # read file into 2D-list
-    path = "/home/kame/Dropbox/data/"
+    if os.name == 'posix':
+        path = "/home/kame/Dropbox/data/"
+    elif os.name == 'nt':
+        path = "C:/Users/steffen.schneider/Dropbox/data/"
     filename = "wortschatz.txt"
     file_ = path + filename
-    file_input = open(file_, "r")
+    file_input = open(file_, "r")  # todo unicodeDecodeError
     text = file_input.readlines()  # .read() reads only one line
     list_original = list(text)
     # print("len list_original: " + str(len(list_original)))

@@ -1,7 +1,6 @@
 # coding=utf-8
 
 import csv
-import datetime
 import inspect
 import math
 import os
@@ -15,6 +14,7 @@ import sys
 import time
 import urllib
 import webbrowser
+from datetime import datetime
 from time import gmtime, strftime, localtime
 
 import easygui
@@ -24,11 +24,6 @@ from selenium import webdriver
 
 if os.name == 'nt':  # Windows
     import winsound
-
-
-# todo
-# refactor old files
-# matplotlib
 
 class Bcolors:
     red = '\033[91m'
@@ -60,12 +55,20 @@ class Pathes:
     path_f_py = r"/home/kame/Dropbox/code/python/f.py"
     # dropbox_path = "/home/kame/Dropbox/code/python/f.py"
     # dropbox_path = "C:/users/steffen.schneider/Dropbox/code/python/f.py"
-    main_lex = r"/home/kame/Dropbox/main-lex.txt"
-    main_lex_work = r"/home/kame/Dropbox/main-lex-work.txt"
-    diary = r"/home/kame/Desktop/main/diary.txt"
+
+    if os.name == 'posix':
+        main_lex = r"/home/kame/Dropbox/main-lex.txt"
+        main_lex_work = r"/home/kame/Dropbox/main-lex-work.txt"
+        diary = r"/home/kame/Desktop/main/diary.txt"
+    elif os.name == 'nt':
+        main_lex = "C:/Users/steffen.schneider/dropbox/main-lex.txt"
+        main_lex_work = "C:/Users/steffen.schneider/dropbox/main-lex-work.txt"
+
     testfile = r"/home/kame/Desktop/testfile.txt"
-    todo_privat = r"/home/kame/Desktop/main/wichtig/ods/TODO_privat.xlsx"
+    todo_privat = r"/home/kame/Dropbox/TODO_privat.txt"
     statistik_privat = r"/home/kame/Desktop/main/wichtig/ods/stats.xlsx"
+    wikipedia_categories = r"/home/kame/Dropbox/data/wikipedia_categories.txt"
+
 
 ##########
 ##########
@@ -196,6 +199,28 @@ def date_in_the_future(date):
         return False
 
 
+def datetime_is_younger_than_other_datetime(date1, format1, date2, format2):
+    from datetime import datetime
+    from time import strptime
+    from time import mktime
+
+    if format1 is 'german':
+        format1 = "%d.%m.%Y %H:%M:%S"
+    elif format1 is 'american':
+        format1 = "%Y-%m-%d %H:%M:%S"
+    datetime_string1 = strptime(date1, format1)  # parse to time.struct_time
+    datetime_string1 = datetime.fromtimestamp(mktime(datetime_string1))
+
+    if format2 is 'german':
+        format2 = "%d.%m.%Y %H:%M:%S"
+    elif format2 is 'american':
+        format2 = "%Y-%m-%d %H:%M:%S"
+    datetime_string2 = strptime(date2, format2)  # parse to time.struct_time
+    datetime_string2 = datetime.fromtimestamp(mktime(datetime_string2))
+
+    return datetime_string1 > datetime_string2
+
+
 def datetime_to_seconds(mydate):
     result = re.match(r"\d\d\.\d\d\.\d\d\d\d \d\d:\d\d:\d\d", mydate)
     if result is not None:
@@ -321,7 +346,7 @@ def file_insert_line(path, index, value):
 
 
 def file_replace_words(file_in, word_to_replace, replace_with):
-    f = open(file_in, "r+")
+    f = open(file_in, "r+", encoding='utf8')
     data = f.readlines()
     f.seek(0)
     for line in data:
@@ -371,32 +396,33 @@ def file_word_analysis(path):
 
 
 def get_battery_status_in_percent():
-    path = "/sys/class/power_supply/BAT0/energy_now"
-    if is_dir_available(path):
-        pass
-    else:
-        path = "/sys/class/power_supply/BAT0/charge_now"
-    now_ = open(path).read()
-    # print("now: " + str(now_))
+    if os.name == 'posix':
+        path = "/sys/class/power_supply/BAT0/energy_now"
+        if is_dir_available(path):
+            pass
+        else:
+            path = "/sys/class/power_supply/BAT0/charge_now"
+        now_ = open(path).read()
+        # print("now: " + str(now_))
 
-    path = "/sys/class/power_supply/BAT0/energy_full"
-    if is_dir_available(path):
-        pass
-    else:
-        path = "/sys/class/power_supply/BAT0/charge_full"
-    full_ = open(path).read()
-    # print("full: " + str(full_))
+        path = "/sys/class/power_supply/BAT0/energy_full"
+        if is_dir_available(path):
+            pass
+        else:
+            path = "/sys/class/power_supply/BAT0/charge_full"
+        full_ = open(path).read()
+        # print("full: " + str(full_))
 
-    result = 100.0 * int(now_) / int(full_)
-    result = str("{0:.1f}".format(result))
-    # print("battery: " + result + " %")
-    if float(result) < 20.0:
-        print("###########################################")
-        print("###########################################")
-        print("#########      low - battery      #########")
-        print("###########################################")
-        print("###########################################")
-    return result
+        result = 100.0 * int(now_) / int(full_)
+        result = str("{0:.1f}".format(result))
+        # print("battery: " + result + " %")
+        if float(result) < 20.0:
+            print("###########################################")
+            print("###########################################")
+            print("#########      low - battery      #########")
+            print("###########################################")
+            print("###########################################")
+        return result
 
 
 def get_computer_name():
@@ -426,7 +452,7 @@ def get_datetime_plus_two_minutes():
 
 
 def get_day_of_the_year():
-    result = datetime.datetime.now().timetuple().tm_yday
+    result = datetime.now().timetuple().tm_yday
     # print(result)
     return result
 
@@ -598,6 +624,12 @@ def get_news():
         print("Error: Not connected to the internet")
 
 
+def get_nth_line(path, linenumber):
+    # starts at 1 !!!
+    import linecache
+    return linecache.getline(path, linenumber)
+
+
 def get_os_name():
     """ e.g. posix, nt """
     result = os.name
@@ -664,6 +696,7 @@ def get_time():
 
 def get_todo():
     path = Pathes.todo_privat
+    print("Tasks from " + str(path) + ": ")
     with open(path) as f:
         reader = csv.DictReader(f)
         for row in reader:
@@ -672,12 +705,13 @@ def get_todo():
 
 def get_todo_without_future():
     path = Pathes.todo_privat
-    with open(path) as f:
-        reader = csv.DictReader(f)
-        for row in reader:
-            if not date_in_the_future(row['DATE']):
-                print('{:.<41} {}'.format(row['TASK'], row['DATE']))
-
+    print("Tasks from " + str(path) + ": ")
+    with open(path) as file_:
+        for row in file_:
+            date = re.findall(r"\d+\.\d+\.\d+", row)[0]
+            if not date_in_the_future(str(date)):
+                string = row[:-1]
+                print(string.split('\t')[0] + "\t" + string.split('\t')[1])
 
 def get_top():
     """show cpu most consuming processes"""
@@ -698,7 +732,7 @@ def get_weekday():
     1 --> Monday
     7 --> Sunday
     """
-    result = datetime.datetime.today().weekday() + 1
+    result = datetime.today().weekday() + 1
     return result
 
 
@@ -744,6 +778,146 @@ def html_open_random_bookmarks_chromium(n=5):
         webbrowser.open(url, new=2)  # open in a new tab, if possible
 
 
+def html_open_random_bookmarks_from_xmlfile():
+    """
+    Open random links from my bookmark.xml
+
+    example of xml:
+    <mylinks>
+      <item>
+        <name>Python3 - library</name>
+        <url>https://docs.python.org/3/library/index.html</url>
+        <category>python</category>
+        <active>true</active>     # show page only if true
+        <frequency>5</frequency>  # 1 call it less often; 9 --> call it most often
+      </item>
+    </mylinks>
+    """
+
+    import random
+    import re
+    import time
+    import webbrowser
+
+    # get input
+    myhtml = r"/home/kame/Dropbox/data/links.xml"
+    file_input = open(myhtml)
+    xml = file_input.readlines()
+
+    # create 2d array
+    lst = []
+    row = 0
+
+    # xml to 2d list
+    for i in range(len(xml)):
+
+        # new item
+        # create new row
+        if xml[i].strip()[:5] == '<item':
+            # print("new item found")
+            lst.append([])
+
+        if xml[i].strip()[:5] == '<name':
+            item = re.findall("<name>(.+)</name>", xml[i])
+            try:
+                lst[row].append(item[0])
+            except RuntimeError:
+                pass
+
+        if xml[i].strip()[:5] == '<url>':
+            item = re.findall("<url>(.+)</url>", xml[i])
+            try:
+                lst[row].append(item[0])
+            except RuntimeError:
+                pass
+
+        if xml[i].strip()[:5] == '<cate':
+            item = re.findall("<category>(.+)</category>", xml[i])
+            try:
+                lst[row].append(item[0])
+            except RuntimeError:
+                pass
+
+        if xml[i].strip()[:5] == '<acti':
+            item = re.findall("<active>(.+)</active>", xml[i])
+            try:
+                lst[row].append(item[0])
+            except RuntimeError:
+                pass
+
+        if xml[i].strip()[:5] == '<freq':
+            item = re.findall("<frequency>(.+)</frequency>", xml[i])
+            try:
+                lst[row].append(item[0])
+            except RuntimeError:
+                pass
+
+        if xml[i].strip()[:5] == '</ite':
+            # print("item finished")
+            row += 1
+
+    print(lst)
+
+    # choose category
+    categories = []
+    for i in range(row):
+        try:
+            categories.append(lst[i][2])
+        except RuntimeError:
+            pass
+
+    # todo - choose category
+    print("all categories:")
+    # show unique values
+    print(sorted(set(categories)))
+
+    count = 0
+    for i in range(30):
+        try:
+            rnd = random.randint(0, row)
+            rnd_2 = random.randint(0, 9)
+
+            # check if is active
+            if 'false' in lst[rnd][3]:
+                pass
+            if 'true' in lst[rnd][3]:
+                if int(lst[rnd][4]) > int(rnd_2):  # regard the frequency
+                    url = lst[rnd][1]
+                    print("url: " + str(url))
+                    if url[0:4] != 'http':
+                        url = 'http://' + str(url)
+                    webbrowser.open(url, new=2)  # open in a new tab, if possible
+                    count += 1
+                    time.sleep(3)
+                    if count == 5:
+                        break
+                else:
+                    continue
+        except RuntimeError:
+            pass
+            # print("xml field empty")
+
+
+def html_open_random_wikipedia(n=2, m=4):
+    # get categories from txt-file (dropbox/data/wikipedia_categories)
+    categories = []
+    path = Pathes.wikipedia_categories
+    with open(path) as file:
+        for row in file:
+            if "ausgeschaltet" in row:
+                pass
+            else:
+                categories.append(row.split('\t')[-1][:-1])
+    categories = ' '.join(categories).split()
+
+    for i in range(n):
+        rnd = random.randint(0, len(categories) - 1)
+        print(categories[rnd])
+        for j in range(m):
+            time.sleep(1)
+            url = "https://de.wikipedia.org/wiki/Spezial:Zuf%C3%A4llig_in_Kategorie/" + str(categories[rnd])
+            webbrowser.open(url, new=2)  # open in a new tab, if possible
+
 def html_to_pdf(input_file, output_file):
     print(Bcolors.cyan + re.findall(r".*\\(.*)", inspect.stack()[0][1])[0] + " --- " + inspect.stack()[0][
         3] + "()" + Bcolors.ENDC)
@@ -785,6 +959,7 @@ def install_numpy():
         os.system("py -3 -m pip install numpy --trusted-host pypi.python.org")
     else:
         print("python_32_or_64_bit() isn't working correct")
+
 
 def install_pcap():
     os.system("py -2 -m pip install pypcap --trusted-host pypi.python.org")
@@ -829,6 +1004,16 @@ def install_pywinauto():
     os.system("py -3 -m pip install pywinauto --trusted-host pypi.python.org")
 
 
+def install_robot():
+    os.system("py -2 -m pip install robot --trusted-host pypi.python.org")
+    os.system("py -3 -m pip install robot --trusted-host pypi.python.org")
+
+
+def install_robotframework():
+    os.system("py -2 -m pip install robotframework --trusted-host pypi.python.org")
+    os.system("py -3 -m pip install robotframework --trusted-host pypi.python.org")
+
+
 def install_scapy():
     os.system("py -2 -m pip install scapy --trusted-host pypi.python.org")
     os.system("py -3 -m pip install scapy-python3 --trusted-host pypi.python.org")
@@ -850,7 +1035,8 @@ def install_tkinter():
     # sagi tkinter-tk
     # sagi tkinter3-tk
     # Windows:
-    # wird bei der Pythoninstallation wahlweise hinzugefügt
+    # wird bei der Python-Installation wahlweise hinzugefügt
+
 
 def install_win32gui():
     print("First download from here --> https://sourceforge.net/projects/pywin32/files/pywin32")
@@ -928,8 +1114,39 @@ def list_to_file(path, mylist):
 
 
 def list_to_tab_delimited_string(mylist):
-    result = ('\t'.join(i) for i in mylist)
-    return result
+    # result = "\t".join("\t".join(map(str, l)) for l in mylist)
+    # todo - no good code - improve
+    print(mylist)
+    string = ''.join(str(x) for x in mylist) + "\n"
+    string = re.sub(",", "\t", string)
+    string = re.sub("\]\[", "\n", string)
+    string = re.sub("\[", "", string)
+    string = re.sub("\]", "", string)
+    string = re.sub("' ", " ", string)
+    string = re.sub("'\t", "\t", string)
+    string = re.sub("'$", "", string)
+    string = re.sub(" '", " ", string)
+    string = re.sub("\t'", "\t", string)
+    string = re.sub("^'", "", string)
+    string = re.sub("\n'", "\n", string)
+    string = re.sub("'\n", "\n", string)
+    string = re.sub("\t\t", "\t", string)
+    string = re.sub("\t\s", "\t", string)
+    string = re.sub("\t\t", "\t", string)
+    string = re.sub("\t\s", "\t", string)
+    string = re.sub("\t\t", "\t", string)
+    string = re.sub("\t\s", "\t", string)
+    string = re.sub("\t\t", "\t", string)
+    string = re.sub("\t\s", "\t", string)
+    string = re.sub("\t\t", "\t", string)
+    string = re.sub("\t\s", "\t", string)
+    string = re.sub("\t\t", "\t", string)
+    string = re.sub("\t\s", "\t", string)
+    string = re.sub("^\t\n$", "", string)
+    string = re.sub("^\t$", "", string)
+    if len(string) < 39:
+        string = ""
+    return string
 
 
 def mod():
@@ -1273,28 +1490,53 @@ def rotronic_analyse_sync():
 
 def search_all_files_for_string(mystring):
     import glob
-    # path = r"C:\Users\steffen.schneider\Desktop\RMS\**"
-    path = r"/home/kame/Desktop/**/*"
 
-    # with open(r"C:/Users/steffen.schneider/Desktop/search.txt", "w") as f:
-    with open(r"/home/kame/Desktop/search.txt", mode="w") as f:
-        for filename in glob.iglob(path, recursive=True):
+    os_ = get_os_name()
+    if os_ == "linux":
+        path = r"/home/kame/Desktop/**/*"
+        with open(r"/home/kame/Desktop/search.txt", mode="w") as f:
+            for filename in glob.iglob(path, recursive=True):
 
-            if filename.endswith((".txt", ".xyz")):
-                print(filename)
-                try:
-                    with open(filename, "r", encoding='utf-8', errors='ignore') as currentFile:
-                        try:
-                            for line in currentFile:
-                                if mystring in line:
-                                    f.write('Found string in ' + filename + '\n')
-                                else:
-                                    pass
-                                    # f.write('NOT ' + filename + '\n')
-                        except RuntimeError:
-                            pass
-                except RuntimeError:
-                    pass
+                if filename.endswith((".txt", ".py", ".csv", ".xlsx")):
+                    print("       " + str(filename))
+                    try:
+                        with open(filename, "r", encoding='utf-8', errors='ignore') as currentFile:
+                            try:
+                                for line in currentFile:
+                                    if mystring in line:
+                                        print(filename)
+                                        f.write('Found string in ' + filename + '\n')
+                                    else:
+                                        pass
+                                        # f.write('NOT ' + filename + '\n')
+                            except RuntimeError:
+                                pass
+                    except RuntimeError:
+                        pass
+    elif os_ == "windows":
+        # path = r"C:\Users\steffen.schneider\Desktop\RMS\**\*.*"
+        path = r"C:\Users\steffen.schneider\Dropbox\code\python\robot\**\*.*"
+        with open(r"C:/Users/steffen.schneider/Desktop/search.txt", "w") as f:
+            for filename in glob.glob(path):
+
+                if filename.endswith((".txt", ".py")):
+                    # print(filename)
+                    try:
+                        with open(filename, "r") as currentFile:
+                            try:
+                                for line in currentFile:
+                                    if mystring in line:
+                                        print(filename)
+                                        f.write('Found string in ' + filename + '\n')
+                                    else:
+                                        pass
+                                        # f.write('NOT ' + filename + '\n')
+                            except RuntimeError:
+                                pass
+                    except RuntimeError:
+                        pass
+    else:
+        Exception("OS not found")
 
 
 def search_file_in_path_and_subfolders(filename, path):
@@ -1440,7 +1682,7 @@ def sort_f_py():
 
 
 def sort_functions_alphabetically(filename):
-    print(Bcolors.cyan + re.findall(r".*\\(.*)", inspect.stack()[0][1])[0] + " --- " + inspect.stack()[0][
+    print(Bcolors.cyan + re.findall(r'.*\\(.*)', inspect.stack()[0][1])[0] + " --- " + inspect.stack()[0][
         3] + "()" + Bcolors.ENDC)
     """
     Alpha-state!
@@ -1556,6 +1798,14 @@ def string_to_file(path, mystring):
     f.write(''.join(str(x) for x in mystring))
 
 
+def string_to_file_beginning(path, mystring):
+    with open(path, 'r+') as f:
+        content = f.read()
+        f.seek(0, 0)
+        f.write(mystring)
+        f.write(content)
+
+
 def system_info():
     get_computer_name()
     os_32_or_64_bit()
@@ -1587,7 +1837,7 @@ def test_1():
 
 
 def test_two_digits_after_point():
-    # todo - run with nose or pytest??????
+    # todo - run with nose or pytest?????? --> in the console!!!
     # float
     assert two_digits_after_point(1.2345) == 1.23
     assert two_digits_after_point(1.238) == 1.24
@@ -1709,4 +1959,4 @@ def watch_position():
 
 
 if __name__ == '__main__':
-    rotronic_analyse_sync()
+    html_open_random_wikipedia(4)
