@@ -17,9 +17,9 @@ class MyTests(unittest.TestCase):
     #     self.assertEqual(self.driver.title, 'Google')
 
     def test_title_in_rms(self):
-        self.driver.get('http://89.28.158.69/wPage/Login.aspx')
+        self.driver.get('http://89.28.158.00/wPage/Login.aspx')
         time.sleep(3)
-        self.assertEqual(self.driver.title, 'Rotronic Monitoring System')
+        self.assertEqual(self.driver.title, 'Monitoring System')
 
     # Rotronic ME; Steffen; 10279145
 
